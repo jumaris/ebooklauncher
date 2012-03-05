@@ -50,11 +50,10 @@ public final class EBookLauncherApplication extends Application {
     public int nbrGridCols = 4;
     public int nbrGridRows = 10;
     public final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    public ArrayList<ArrayList<String>> tagLevels = new ArrayList<ArrayList<String>>();
 
     /*
-     * Create a temporary file to see whether a volume is really writeable. It's important not to
-     * put it in the root directory which may have a limit on the number of files.
+     * Create a temporary file to see whether a volume is really writeable. It's important not to put it in the root
+     * directory which may have a limit on the number of files.
      */
     protected boolean checkFsWritable() {
         final String directoryName = Environment.getExternalStorageDirectory().toString() + "/DCIM";
@@ -78,7 +77,7 @@ public final class EBookLauncherApplication extends Application {
 
     protected Drawable getAppImage(final String packageName) {
         try {
-            return this.getPackageManager().getApplicationIcon(packageName);
+            return getPackageManager().getApplicationIcon(packageName);
         } catch (final NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -102,7 +101,7 @@ public final class EBookLauncherApplication extends Application {
     }
 
     public Bitmap getApplicationImage() {
-        return BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher);
+        return BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
     }
 
     public String getApplicationName() {
@@ -111,7 +110,7 @@ public final class EBookLauncherApplication extends Application {
 
     public String getAppSdCardPathDir() {
         final File extDir = Environment.getExternalStorageDirectory();
-        return extDir.getPath() + File.separator + this.getApplicationName() + File.separator;
+        return extDir.getPath() + File.separator + getApplicationName() + File.separator;
     }
 
     public String getAppVersion() {
@@ -121,8 +120,7 @@ public final class EBookLauncherApplication extends Application {
     protected String getAppVersion(final String packageName) {
         String verName = "unknown";
         try {
-            final PackageInfo pInfo = this.getPackageManager()
-                    .getPackageInfo(packageName, PackageManager.GET_META_DATA);
+            final PackageInfo pInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
             verName = pInfo.versionName;
         } catch (final NameNotFoundException e) {
             e.printStackTrace();
@@ -137,8 +135,7 @@ public final class EBookLauncherApplication extends Application {
     protected int getAppVersionNbr(final String packageName) {
         int verName = -1;
         try {
-            final PackageInfo pInfo = this.getPackageManager()
-                    .getPackageInfo(packageName, PackageManager.GET_META_DATA);
+            final PackageInfo pInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
             verName = pInfo.versionCode;
         } catch (final NameNotFoundException e) {
             e.printStackTrace();
@@ -147,14 +144,14 @@ public final class EBookLauncherApplication extends Application {
     }
 
     public DataModelInterface getDataModel() {
-        return this.dataMdl;
+        return dataMdl;
     }
 
     public List<String> getInstalledComponentList() {
         final Intent componentSearchIntent = new Intent();
         componentSearchIntent.addCategory(Constants.COMPONENTS_INTENT_CATEGORY);
         componentSearchIntent.setAction(Constants.COMPONENTS_INTENT_ACTION_DEFAULT);
-        final List<ResolveInfo> ril = this.getPackageManager().queryIntentActivities(componentSearchIntent,
+        final List<ResolveInfo> ril = getPackageManager().queryIntentActivities(componentSearchIntent,
                 PackageManager.MATCH_DEFAULT_ONLY);
         final List<String> componentList = new ArrayList<String>();
         Log.d(EBookLauncherApplication.LOG_TAG, "Search for installed components found " + ril.size() + " matches.");
@@ -191,12 +188,12 @@ public final class EBookLauncherApplication extends Application {
 
     public boolean hasStorage(final boolean requireWriteAccess) {
         final String state = Environment.getExternalStorageState();
-        Log.v(this.getLogTag(), "storage state is " + state);
+        Log.v(getLogTag(), "storage state is " + state);
 
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             if (requireWriteAccess) {
-                final boolean writable = this.checkFsWritable();
-                Log.v(this.getLogTag(), "storage writable is " + writable);
+                final boolean writable = checkFsWritable();
+                Log.v(getLogTag(), "storage writable is " + writable);
                 return writable;
             } else {
                 return true;
@@ -206,7 +203,7 @@ public final class EBookLauncherApplication extends Application {
     }
 
     public boolean isIntentAvailable(final String action) {
-        final PackageManager packageManager = this.getPackageManager();
+        final PackageManager packageManager = getPackageManager();
         final Intent intent = new Intent(action);
         final List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);

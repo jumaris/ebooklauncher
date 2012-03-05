@@ -74,7 +74,8 @@ import android.widget.Toast;
 import com.eink.norefresh.A2Service;
 
 /**
- * this is the main screen of the app. 
+ * this is the main screen of the app.
+ * 
  * @author aspela
  */
 public final class EBookLauncherActivity extends Activity implements OnClickListener {
@@ -84,7 +85,7 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     public static final int CONTEXTMENU_OPEN_BOOK = 1;
     public static final int CONTEXTMENU_VIEW_DETAILS = 0;
 
-    private final static String DOWNLOAD_APK_URL = "http://code.google.com/p/sonyprst1home/downloads/list";
+    private final static String DOWNLOAD_APK_URL = "http://code.google.com/p/ebooklauncher/downloads/list";
 
     /** tag used for logging */
     public static final String LOG_TAG = "EBookLauncherActivity :";
@@ -100,13 +101,13 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     public static final int MENU_SETTINGS = 90;
     public static final int NEW_VER_NOTIFICATION_ID = 3124;
     public static final int NUMBER_BOOKS_ON_SHELF = 4;
-    private final static String VERSION_TXT_URL = "http://sonyprst1home.googlecode.com/hg/version.txt";
+    private final static String VERSION_TXT_URL = "http://ebooklauncher.googlecode.com/hg/version.txt";
 
     /**
      * Show an about dialog for this application.
      */
     public static void showAboutWithExtras(final Activity cntxt, final EBookLauncherApplication app) {
-        AboutDialog about = new AboutDialog(cntxt, app);
+        final AboutDialog about = new AboutDialog(cntxt, app);
         about.setTitle(app.getApplicationName());
         about.show();
     }
@@ -128,7 +129,7 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         protected String doInBackground(final Integer... params) {
             Thread.currentThread().setName("checkForNewVersion()");
 
-            this.currentVersion = params[0];
+            currentVersion = params[0];
 
             String version = "";
             BufferedReader in = null;
@@ -164,11 +165,11 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
          */
         @Override
         protected void onPostExecute(final String result) {
-            if ((result != null) && (result.length() > 0)) {
+            if (result != null && result.length() > 0) {
                 final String verCode = result.substring(0, result.indexOf(','));
                 final String verName = result.substring(verCode.length());
 
-                if (this.currentVersion < Integer.parseInt(verCode)) {
+                if (currentVersion < Integer.parseInt(verCode)) {
                     // a new version is available, so post a notification
 
                     // configure the notification
@@ -230,9 +231,9 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         switch (requestCode) {
         case ACTIVITY_EDIT_PREFERENCES:
-            this.updateCurrentlyReading();
-            this.updateCollectionlist1();
-            this.updateCollectionlist2();
+            updateCurrentlyReading();
+            updateCollectionlist1();
+            updateCollectionlist2();
             break;
         default:
             super.onActivityResult(requestCode, resultCode, data);
@@ -242,60 +243,60 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     @Override
     public void onClick(final View v) {
         if (v.getTag().equals("apps")) {
-            this.startActivity(new Intent(this.getApplication(), ApplicationsActivity.class));
+            startActivity(new Intent(getApplication(), ApplicationsActivity.class));
 
         } else if (v.getTag().equals("settings")) {
-            this.startActivity(new Intent(this.getApplication(), EditPreferences.class));
+            startActivity(new Intent(getApplication(), EditPreferences.class));
 
         } else if (v.getTag().equals("coverflow")) {
-            this.startActivity(new Intent(this.getApplication(), CoverFlowActivity.class));
+            startActivity(new Intent(getApplication(), CoverFlowActivity.class));
 
         } else if (v.getTag().equals("collections")) {
-            this.startActivity(new Intent(this.getApplication(), CollectionsActivity.class));
+            startActivity(new Intent(getApplication(), CollectionsActivity.class));
 
         } else if (v.getTag().equals("books")) {
-            this.startActivity(new Intent(this.getApplication(), BooksActivity.class));
+            startActivity(new Intent(getApplication(), BooksActivity.class));
 
         } else if (v.getTag().equals("periodicals")) {
-            this.startActivity(new Intent(this.getApplication(), PeriodicalsActivity.class));
+            startActivity(new Intent(getApplication(), PeriodicalsActivity.class));
 
         } else if (v.getTag().equals("nextpage")) {
-            this.startActivity(new Intent(this.getApplication(), Page2Activity.class));
+            startActivity(new Intent(getApplication(), Page2Activity.class));
 
         } else if (v.getTag().equals("next_currnt_read")) {
-            this.currentlyReadingStart = this.currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            this.updateCurrentlyReading();
+            currentlyReadingStart = currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            updateCurrentlyReading();
 
         } else if (v.getTag().equals("prev_currnt_read")) {
-            this.currentlyReadingStart = this.currentlyReadingStart - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            if (this.currentlyReadingStart < 0) {
-                this.currentlyReadingStart = 0;
+            currentlyReadingStart = currentlyReadingStart - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            if (currentlyReadingStart < 0) {
+                currentlyReadingStart = 0;
             }
-            this.updateCurrentlyReading();
+            updateCurrentlyReading();
 
         } else if (v.getTag().equals("next_collection1")) {
-            this.collection1Start = this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            this.updateCollectionlist1();
+            collection1Start = collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            updateCollectionlist1();
 
         } else if (v.getTag().equals("prev_collection1")) {
-            this.collection1Start = this.collection1Start - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            if (this.collection1Start < 0) {
-                this.collection1Start = 0;
+            collection1Start = collection1Start - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            if (collection1Start < 0) {
+                collection1Start = 0;
             }
-            this.updateCollectionlist1();
+            updateCollectionlist1();
 
         } else if (v.getTag().equals("next_collection2")) {
-            this.collection2Start = this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            this.updateCollectionlist2();
+            collection2Start = collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            updateCollectionlist2();
 
         } else if (v.getTag().equals("prev_collection2")) {
-            this.collection2Start = this.collection2Start - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
-            if (this.collection2Start < 0) {
-                this.collection2Start = 0;
+            collection2Start = collection2Start - EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF;
+            if (collection2Start < 0) {
+                collection2Start = 0;
             }
-            this.updateCollectionlist2();
+            updateCollectionlist2();
         }
-        this.updateCurrentTime();
+        updateCurrentTime();
     }
 
     @Override
@@ -304,18 +305,16 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         final AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) aItem.getMenuInfo();
 
         // To get the id of the clicked item in the list use menuInfo.id
-        Log.e(EBookLauncherApplication.LOG_TAG, EBookLauncherActivity.LOG_TAG + "list pos:"
-                + menuInfo.position
-                + " id:"
-                + menuInfo.id);
-        final Book bk = this.myApp.dataMdl.getBook(this, menuInfo.id);
+        Log.e(EBookLauncherApplication.LOG_TAG, EBookLauncherActivity.LOG_TAG + "list pos:" + menuInfo.position
+                + " id:" + menuInfo.id);
+        final Book bk = myApp.dataMdl.getBook(this, menuInfo.id);
 
         switch (aItem.getItemId()) {
 
         case CONTEXTMENU_VIEW_DETAILS:
             Log.d(EBookLauncherApplication.LOG_TAG + EBookLauncherActivity.LOG_TAG,
                     "Show details of book: " + bk.toString());
-            this.startActivity(new Intent(this, BookDetailsActivity.class));
+            startActivity(new Intent(this, BookDetailsActivity.class));
             return true;
 
         case CONTEXTMENU_OPEN_BOOK:
@@ -338,71 +337,71 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         this.setContentView(DeviceFactory.getPage1Layout());
 
         // Start the NoRefresh Service
-        Intent svc = new Intent(this, A2Service.class);
-        this.startService(svc);
+        final Intent svc = new Intent(this, A2Service.class);
+        startService(svc);
 
-        this.myApp = (EBookLauncherApplication) this.getApplication();
+        myApp = (EBookLauncherApplication) getApplication();
         DeviceFactory.deleteOldDatabaseFile();
 
-        // this.checkForNewVersion.execute(((SonyPrsT1HomeApplication)
+        // this.checkForNewVersion.execute(((ebooklauncherApplication)
         // this.getApplication()).getAppVersionNbr());
         // this.listInstalledApps();
-        this.preferencesRestore();
+        preferencesRestore();
 
         // final CalibreDataModel cdm = new CalibreDataModel(this);
         // cdm.importCalibreMetadata(DataModelFactory.getCalibreMetadataFilenames());
 
-        this.btnPeriodicals = (Button) this.findViewById(R.id.page1_btn_periodicals);
-        this.btnCollections = (Button) this.findViewById(R.id.page1_btn_collections);
-        this.btnApps = (Button) this.findViewById(R.id.page1_btn_apps);
-        this.btnBooks = (Button) this.findViewById(R.id.page1_btn_books);
-        this.btnSettings = (Button) this.findViewById(R.id.page1_btn_settings);
+        btnPeriodicals = (Button) findViewById(R.id.page1_btn_periodicals);
+        btnCollections = (Button) findViewById(R.id.page1_btn_collections);
+        btnApps = (Button) findViewById(R.id.page1_btn_apps);
+        btnBooks = (Button) findViewById(R.id.page1_btn_books);
+        btnSettings = (Button) findViewById(R.id.page1_btn_settings);
 
-        this.btnApps.setOnClickListener(this);
-        this.btnBooks.setOnClickListener(this);
-        this.btnCollections.setOnClickListener(this);
-        this.btnPeriodicals.setOnClickListener(this);
-        this.btnSettings.setOnClickListener(this);
+        btnApps.setOnClickListener(this);
+        btnBooks.setOnClickListener(this);
+        btnCollections.setOnClickListener(this);
+        btnPeriodicals.setOnClickListener(this);
+        btnSettings.setOnClickListener(this);
 
-        this.imgBtnCurrentReadNext = (ImageView) this.findViewById(R.id.page1_btn_next_currnt_read);
-        this.imgBtnCurrentReadPrev = (ImageView) this.findViewById(R.id.page1_btn_prev_currnt_read);
+        imgBtnCurrentReadNext = (ImageView) findViewById(R.id.page1_btn_next_currnt_read);
+        imgBtnCurrentReadPrev = (ImageView) findViewById(R.id.page1_btn_prev_currnt_read);
 
-        this.imgBtnCollection1Next = (ImageView) this.findViewById(R.id.page1_btn_next_collection1);
-        this.imgBtnCollection1Prev = (ImageView) this.findViewById(R.id.page1_btn_prev_collection1);
+        imgBtnCollection1Next = (ImageView) findViewById(R.id.page1_btn_next_collection1);
+        imgBtnCollection1Prev = (ImageView) findViewById(R.id.page1_btn_prev_collection1);
 
-        this.imgBtnCollection2Next = (ImageView) this.findViewById(R.id.page1_btn_next_collection2);
-        this.imgBtnCollection2Prev = (ImageView) this.findViewById(R.id.page1_btn_prev_collection2);
+        imgBtnCollection2Next = (ImageView) findViewById(R.id.page1_btn_next_collection2);
+        imgBtnCollection2Prev = (ImageView) findViewById(R.id.page1_btn_prev_collection2);
 
-        this.imgBtnCurrentReadNext.setOnClickListener(this);
-        this.imgBtnCurrentReadPrev.setOnClickListener(this);
+        imgBtnCurrentReadNext.setOnClickListener(this);
+        imgBtnCurrentReadPrev.setOnClickListener(this);
 
-        this.imgBtnCollection1Next.setOnClickListener(this);
-        this.imgBtnCollection1Prev.setOnClickListener(this);
+        imgBtnCollection1Next.setOnClickListener(this);
+        imgBtnCollection1Prev.setOnClickListener(this);
 
-        this.imgBtnCollection2Next.setOnClickListener(this);
-        this.imgBtnCollection2Prev.setOnClickListener(this);
+        imgBtnCollection2Next.setOnClickListener(this);
+        imgBtnCollection2Prev.setOnClickListener(this);
 
-        this.lblClock = (TextView) this.findViewById(R.id.page1_text_clock);
-        this.lblAppVerNbr = (TextView) this.findViewById(R.id.page1_text_app_version_nbr);
-        this.lblAppVerNbr.setText("Ver: " + this.myApp.getAppVersion());
+        lblClock = (TextView) findViewById(R.id.page1_text_clock);
+        lblAppVerNbr = (TextView) findViewById(R.id.page1_text_app_version_nbr);
+        lblAppVerNbr.setText("Ver: " + myApp.getAppVersion());
 
-        this.lblCurrentRead = (TextView) this.findViewById(R.id.page1_text_currently_reading_lbl);
-        this.lblCollection1 = (TextView) this.findViewById(R.id.page1_text_collection1_lbl);
-        this.lblCollection2 = (TextView) this.findViewById(R.id.page1_text_collection2_lbl);
+        lblCurrentRead = (TextView) findViewById(R.id.page1_text_currently_reading_lbl);
+        lblCollection1 = (TextView) findViewById(R.id.page1_text_collection1_lbl);
+        lblCollection2 = (TextView) findViewById(R.id.page1_text_collection2_lbl);
 
-        this.listviewCurrentRead = (HorizontialListView) this.findViewById(R.id.page1_current_reading);
-        this.listviewCollectns1 = (HorizontialListView) this.findViewById(R.id.page1_collections_list1);
-        this.listviewCollectns2 = (HorizontialListView) this.findViewById(R.id.page1_collections_list2);
+        listviewCurrentRead = (HorizontialListView) findViewById(R.id.page1_current_reading);
+        listviewCollectns1 = (HorizontialListView) findViewById(R.id.page1_collections_list1);
+        listviewCollectns2 = (HorizontialListView) findViewById(R.id.page1_collections_list2);
 
         if (android.os.Build.MANUFACTURER.equalsIgnoreCase(DeviceFactory.DEVICE_MANUFACTURER_BARNES_AND_NOBLE)) {
 
         } else {
-            this.btnNextPage = (ImageButton) this.findViewById(R.id.page1_btn_nextpage);
-            this.btnNextPage.setVisibility(View.VISIBLE);
-            this.btnNextPage.setOnClickListener(this);
+            btnNextPage = (ImageButton) findViewById(R.id.page1_btn_nextpage);
+            btnNextPage.setVisibility(View.VISIBLE);
+            btnNextPage.setOnClickListener(this);
             // Coverflow only on Sony (for now)
-            this.btnCoverflow = (Button) this.findViewById(R.id.page1_btn_coverflow);
-            this.btnCoverflow.setOnClickListener(this);
+            btnCoverflow = (Button) findViewById(R.id.page1_btn_coverflow);
+            btnCoverflow.setOnClickListener(this);
         }
     }
 
@@ -435,13 +434,13 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         switch (keyCode) {
         case 19: {
             // left arrow pressed
-            this.startActivity(new Intent(this.getApplication(), CoverFlowActivity.class));
+            startActivity(new Intent(getApplication(), CoverFlowActivity.class));
             retValue = true;
             break;
         }
         case 20: {
             // right arrow pressed
-            this.startActivity(new Intent(this.getApplication(), Page2Activity.class));
+            startActivity(new Intent(getApplication(), Page2Activity.class));
             retValue = true;
             break;
         }
@@ -456,24 +455,24 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         boolean retvalue = false;
         switch (item.getItemId()) {
         case MENU_PREFERENCES:
-            this.startActivityForResult(new Intent(this.getApplication(), EditPreferences.class),
+            startActivityForResult(new Intent(getApplication(), EditPreferences.class),
                     EBookLauncherActivity.ACTIVITY_EDIT_PREFERENCES);
             retvalue = true;
             break;
 
         case MENU_SETTINGS:
-            this.startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+            startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
             retvalue = true;
             break;
 
         case MENU_CHECK_NEW_VERSION:
             final Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(EBookLauncherActivity.DOWNLOAD_APK_URL));
-            this.startActivity(i);
+            startActivity(i);
             break;
 
         case MENU_CLEAR_DEFAULTS:
-            final PackageManager pm = this.getPackageManager();
+            final PackageManager pm = getPackageManager();
             pm.clearPackagePreferredActivities("uk.co.droidinactu.ebooklauncher");
             pm.clearPackagePreferredActivities("com.android.launcher");
             retvalue = true;
@@ -494,7 +493,7 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     protected void onPause() {
         super.onPause();
 
-        this.preferencesBackup();
+        preferencesBackup();
     }
 
     @Override
@@ -503,9 +502,9 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
 
         // this.logDeviceBuildInfo();
 
-        if (this.myApp.dataMdl == null) {
-            this.myApp.dataMdl = DeviceFactory.getDataModel(this.getApplication());
-            if (this.myApp.dataMdl == null) {
+        if (myApp.dataMdl == null) {
+            myApp.dataMdl = DeviceFactory.getDataModel(getApplication());
+            if (myApp.dataMdl == null) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Device \n[" + android.os.Build.MANUFACTURER + "]\nnot recognized!")
                         .setCancelable(false).setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -517,9 +516,9 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                 final AlertDialog alert = builder.create();
                 alert.show();
 
-            } else if (!this.myApp.dataMdl.isOpened()) {
+            } else if (!myApp.dataMdl.isOpened()) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Database\n[" + this.myApp.dataMdl.getDbFilename() + "]\nfailed to open!")
+                builder.setMessage("Database\n[" + myApp.dataMdl.getDbFilename() + "]\nfailed to open!")
                         .setCancelable(false).setPositiveButton("Done", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int id) {
@@ -531,13 +530,13 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
             }
         }
 
-        this.updateButtonCounts();
+        updateButtonCounts();
 
-        this.updateCurrentlyReading();
-        this.updateCollectionlist1();
-        this.updateCollectionlist2();
+        updateCurrentlyReading();
+        updateCollectionlist1();
+        updateCollectionlist2();
 
-        this.updateCurrentTime();
+        updateCurrentTime();
     }
 
     /**
@@ -546,8 +545,8 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     private void preferencesBackup() {
         try {
             final File f1 = new File(
-                    "/data/data/uk.co.droidinactu.ebooklauncher/shared_prefs/uk.co.droidinactu.sony.prst1.home_preferences.xml");
-            final File f2 = new File("/mnt/sdcard/sonyprst1home_shared_prefs.xml");
+                    "/data/data/uk.co.droidinactu.ebooklauncher/shared_prefs/uk.co.droidinactu.ebooklauncher.home_preferences.xml");
+            final File f2 = new File("/mnt/sdcard/ebooklauncher_shared_prefs.xml");
             if (f1.exists()) {
                 FileUtils.copyFile(f1, f2);
             }
@@ -557,14 +556,14 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     }
 
     /**
-     * if the application does not currently have any preferences set and a
-     * backup preferences file exists on the sd card, restore the preferences.
+     * if the application does not currently have any preferences set and a backup preferences file exists on the sd
+     * card, restore the preferences.
      */
     private void preferencesRestore() {
         try {
             final File f1 = new File(
-                    "/data/data/uk.co.droidinactu.ebooklauncher/shared_prefs/uk.co.droidinactu.sony.prst1.home_preferences.xml");
-            final File f2 = new File("/mnt/sdcard/sonyprst1home_shared_prefs.xml");
+                    "/data/data/uk.co.droidinactu.ebooklauncher/shared_prefs/uk.co.droidinactu.ebooklauncher.home_preferences.xml");
+            final File f2 = new File("/mnt/sdcard/ebooklauncher_shared_prefs.xml");
             if (!f1.exists() && f2.exists()) {
                 FileUtils.copyFile(f2, f1);
             }
@@ -574,8 +573,8 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     }
 
     private void setupList(final HorizontialListView listview, final SimpleCursorAdapter listAdapter, final Cursor cursr) {
-        if ((cursr == null) || ((cursr != null) && (cursr.getCount() == 0))) {
-            Toast.makeText(this.getApplication(), "No books available", Toast.LENGTH_LONG);
+        if (cursr == null || cursr != null && cursr.getCount() == 0) {
+            Toast.makeText(getApplication(), "No books available", Toast.LENGTH_LONG);
         } else {
             listview.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
                 @Override
@@ -597,7 +596,7 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
             listview.setOnItemSelectedListener(new OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(final AdapterView<?> av, final View v, final int pos, final long id) {
-                    EBookLauncherActivity.this.myApp.dataMdl.launchBook(EBookLauncherActivity.this, id);
+                    myApp.dataMdl.launchBook(EBookLauncherActivity.this, id);
                 }
 
                 @Override
@@ -615,8 +614,8 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                         try {
                             final ImageView coverImg = (ImageView) view;
                             final String thumbnailFilename = cursor.getString(thumbColIndex);
-                            final Bitmap bitmap = EBookLauncherActivity.this.myApp.dataMdl.getBookCoverImg(
-                                    EBookLauncherActivity.this, thumbnailFilename);
+                            final Bitmap bitmap = myApp.dataMdl.getBookCoverImg(EBookLauncherActivity.this,
+                                    thumbnailFilename);
                             coverImg.setImageDrawable(new BitmapDrawable(bitmap));
                             retval = true;
                         } catch (final Exception e) {
@@ -628,8 +627,8 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                 }
             });
             listview.setAdapter(listAdapter);
-            this.registerForContextMenu(listview);
-            this.startManagingCursor(cursr);
+            registerForContextMenu(listview);
+            startManagingCursor(cursr);
         }
     }
 
@@ -637,29 +636,28 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
      * Show an about dialog for this application.
      */
     public void showAboutWithExtras() {
-        EBookLauncherActivity.showAboutWithExtras(this, this.myApp);
+        EBookLauncherActivity.showAboutWithExtras(this, myApp);
     }
 
     private void updateButtonCounts() {
         new Thread() {
             @Override
             public void run() {
-                this.setName("updateButtonCounts()");
-                Cursor tmpCursor = EBookLauncherActivity.this.myApp.dataMdl.getBooks(
-                        EBookLauncherActivity.this.getApplication(), "", BookSortBy.TITLE, "");
+                setName("updateButtonCounts()");
+                Cursor tmpCursor = myApp.dataMdl.getBooks(EBookLauncherActivity.this.getApplication(), "",
+                        BookSortBy.TITLE, "");
                 if (tmpCursor != null) {
-                    EBookLauncherActivity.this.btnBooksCount = tmpCursor.getCount();
+                    btnBooksCount = tmpCursor.getCount();
                     tmpCursor.close();
                 }
-                tmpCursor = EBookLauncherActivity.this.myApp.dataMdl.getCollections(0, 999, null);
+                tmpCursor = myApp.dataMdl.getCollections(0, 999, null);
                 if (tmpCursor != null) {
-                    EBookLauncherActivity.this.btnCollectionsCount = tmpCursor.getCount();
+                    btnCollectionsCount = tmpCursor.getCount();
                     tmpCursor.close();
                 }
-                tmpCursor = EBookLauncherActivity.this.myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this
-                        .getApplication());
+                tmpCursor = myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this.getApplication());
                 if (tmpCursor != null) {
-                    EBookLauncherActivity.this.btnPeriodicalsCount = tmpCursor.getCount();
+                    btnPeriodicalsCount = tmpCursor.getCount();
                     tmpCursor.close();
                 }
 
@@ -671,17 +669,17 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                 EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        EBookLauncherActivity.this.btnApps.setText(String.format(EBookLauncherActivity.this
-                                .getResources().getString(R.string.page1_Apps), apps.size()));
-                        EBookLauncherActivity.this.btnBooks.setText(String.format(EBookLauncherActivity.this
-                                .getResources().getString(R.string.page1_Books),
-                                EBookLauncherActivity.this.btnBooksCount));
-                        EBookLauncherActivity.this.btnCollections.setText(String.format(EBookLauncherActivity.this
-                                .getResources().getString(R.string.page1_Collections),
-                                EBookLauncherActivity.this.btnCollectionsCount));
-                        EBookLauncherActivity.this.btnPeriodicals.setText(String.format(EBookLauncherActivity.this
-                                .getResources().getString(R.string.page1_Periodicals),
-                                EBookLauncherActivity.this.btnPeriodicalsCount));
+                        btnApps.setText(String.format(
+                                EBookLauncherActivity.this.getResources().getString(R.string.page1_Apps), apps.size()));
+                        btnBooks.setText(String.format(
+                                EBookLauncherActivity.this.getResources().getString(R.string.page1_Books),
+                                btnBooksCount));
+                        btnCollections.setText(String.format(
+                                EBookLauncherActivity.this.getResources().getString(R.string.page1_Collections),
+                                btnCollectionsCount));
+                        btnPeriodicals.setText(String.format(
+                                EBookLauncherActivity.this.getResources().getString(R.string.page1_Periodicals),
+                                btnPeriodicalsCount));
                     }
                 });
             }
@@ -692,122 +690,104 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         new Thread() {
             @Override
             public void run() {
-                this.setName("updateCollectionlist1()");
+                setName("updateCollectionlist1()");
                 final String clctname = EditPreferences.getCollectionName1(EBookLauncherActivity.this.getApplication());
 
                 try {
 
                     if (clctname.equals(EBookLauncherActivity.this.getResources().getString(
                             R.string.pref_collection_recently_added))) {
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getRecentlyAdded(EBookLauncherActivity.this);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts1.getCount();
-                        if (EBookLauncherActivity.this.collection1Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection1Start = nbrItems - 1;
+                        cursrCollcnts1 = myApp.dataMdl.getRecentlyAdded(EBookLauncherActivity.this);
+                        final int nbrItems = cursrCollcnts1.getCount();
+                        if (collection1Start >= nbrItems) {
+                            collection1Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection1Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection1Start + 1,
-                                            (EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection1Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection1Start + 1, collection1Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection1Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection1Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection1.setText(clctname + " " + tmpStr);
+                                lblCollection1.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts1.close();
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getRecentlyAdded(EBookLauncherActivity.this,
-                                        EBookLauncherActivity.this.collection1Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
+                        cursrCollcnts1.close();
+                        cursrCollcnts1 = myApp.dataMdl.getRecentlyAdded(EBookLauncherActivity.this, collection1Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
 
                     } else if (clctname.equals(EBookLauncherActivity.this.getResources().getString(
                             R.string.pref_collection_periodicals))) {
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getPeriodicals(EBookLauncherActivity.this);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts1.getCount();
-                        if (EBookLauncherActivity.this.collection1Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection1Start = nbrItems - 1;
+                        cursrCollcnts1 = myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this);
+                        final int nbrItems = cursrCollcnts1.getCount();
+                        if (collection1Start >= nbrItems) {
+                            collection1Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection1Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection1Start + 1,
-                                            (EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection1Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection1Start + 1, collection1Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection1Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection1Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection1.setText(clctname + " " + tmpStr);
+                                lblCollection1.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts1.close();
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getPeriodicals(EBookLauncherActivity.this,
-                                        EBookLauncherActivity.this.collection1Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
+                        cursrCollcnts1.close();
+                        cursrCollcnts1 = myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this, collection1Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
 
                     } else {
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getBooksInCollection(clctname, BookSortBy.TITLE);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts1.getCount();
-                        if (EBookLauncherActivity.this.collection1Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection1Start = nbrItems - 1;
+                        cursrCollcnts1 = myApp.dataMdl.getBooksInCollection(clctname, BookSortBy.TITLE);
+                        final int nbrItems = cursrCollcnts1.getCount();
+                        if (collection1Start >= nbrItems) {
+                            collection1Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection1Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection1Start + 1,
-                                            (EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection1Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection1Start + 1, collection1Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection1Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection1Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection1Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection1.setText(clctname + " " + tmpStr);
+                                lblCollection1.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts1.close();
-                        EBookLauncherActivity.this.cursrCollcnts1 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getBooksInCollection(clctname, EBookLauncherActivity.this.collection1Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, BookSortBy.TITLE);
+                        cursrCollcnts1.close();
+                        cursrCollcnts1 = myApp.dataMdl.getBooksInCollection(clctname, collection1Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, BookSortBy.TITLE);
                     }
 
                     EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (EditPreferences.useFilenames(EBookLauncherActivity.this)) {
-                                EBookLauncherActivity.this.listAdapterCollectns1 = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, R.layout.book_grid_item_filename,
-                                        EBookLauncherActivity.this.cursrCollcnts1, DeviceFactory
+                                listAdapterCollectns1 = new SimpleCursorAdapter(EBookLauncherActivity.this,
+                                        R.layout.book_grid_item_filename, cursrCollcnts1, DeviceFactory
                                                 .getBookColumnsToMap(true), BooksActivity.bookGridColsMapToFilename);
                             } else {
                                 int layoutId = R.layout.book_grid_item;
@@ -815,14 +795,12 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                                         .equalsIgnoreCase(DeviceFactory.DEVICE_MANUFACTURER_BARNES_AND_NOBLE)) {
                                     layoutId = R.layout.book_grid_item_nook;
                                 }
-                                EBookLauncherActivity.this.listAdapterCollectns1 = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, layoutId,
-                                        EBookLauncherActivity.this.cursrCollcnts1, DeviceFactory
-                                                .getBookColumnsToMap(false), BooksActivity.bookGridColsMapTo);
+                                listAdapterCollectns1 = new SimpleCursorAdapter(EBookLauncherActivity.this, layoutId,
+                                        cursrCollcnts1, DeviceFactory.getBookColumnsToMap(false),
+                                        BooksActivity.bookGridColsMapTo);
                             }
-                            EBookLauncherActivity.this.setupList(EBookLauncherActivity.this.listviewCollectns1,
-                                    EBookLauncherActivity.this.listAdapterCollectns1,
-                                    EBookLauncherActivity.this.cursrCollcnts1);
+                            EBookLauncherActivity.this.setupList(listviewCollectns1, listAdapterCollectns1,
+                                    cursrCollcnts1);
 
                         }
                     });
@@ -837,122 +815,104 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         new Thread() {
             @Override
             public void run() {
-                this.setName("updateCollectionlist2()");
+                setName("updateCollectionlist2()");
                 try {
                     final String clctname = EditPreferences.getCollectionName2(EBookLauncherActivity.this
                             .getApplication());
 
                     if (clctname.equals(EBookLauncherActivity.this.getResources().getString(
                             R.string.pref_collection_recently_added))) {
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getRecentlyAdded(EBookLauncherActivity.this);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts2.getCount();
-                        if (EBookLauncherActivity.this.collection2Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection2Start = nbrItems - 1;
+                        cursrCollcnts2 = myApp.dataMdl.getRecentlyAdded(EBookLauncherActivity.this);
+                        final int nbrItems = cursrCollcnts2.getCount();
+                        if (collection2Start >= nbrItems) {
+                            collection2Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection2Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection2Start + 1,
-                                            (EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection2Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection2Start + 1, collection2Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection1Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection1Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection2.setText(clctname + " " + tmpStr);
+                                lblCollection2.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts2.close();
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getRecentlyAdded(EBookLauncherActivity.this,
-                                        EBookLauncherActivity.this.collection2Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
+                        cursrCollcnts2.close();
+                        cursrCollcnts2 = myApp.dataMdl.getRecentlyAdded(EBookLauncherActivity.this, collection2Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
 
                     } else if (clctname.equals(EBookLauncherActivity.this.getResources().getString(
                             R.string.pref_collection_periodicals))) {
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getPeriodicals(EBookLauncherActivity.this);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts2.getCount();
-                        if (EBookLauncherActivity.this.collection2Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection2Start = nbrItems - 1;
+                        cursrCollcnts2 = myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this);
+                        final int nbrItems = cursrCollcnts2.getCount();
+                        if (collection2Start >= nbrItems) {
+                            collection2Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection2Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection2Start + 1,
-                                            (EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection2Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection2Start + 1, collection2Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection2Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection2Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection2.setText(clctname + " " + tmpStr);
+                                lblCollection2.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts2.close();
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getPeriodicals(EBookLauncherActivity.this,
-                                        EBookLauncherActivity.this.collection2Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
+                        cursrCollcnts2.close();
+                        cursrCollcnts2 = myApp.dataMdl.getPeriodicals(EBookLauncherActivity.this, collection2Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF);
 
                     } else {
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getBooksInCollection(clctname, BookSortBy.TITLE);
-                        final int nbrItems = EBookLauncherActivity.this.cursrCollcnts2.getCount();
-                        if (EBookLauncherActivity.this.collection2Start >= nbrItems) {
-                            EBookLauncherActivity.this.collection2Start = nbrItems - 1;
+                        cursrCollcnts2 = myApp.dataMdl.getBooksInCollection(clctname, BookSortBy.TITLE);
+                        final int nbrItems = cursrCollcnts2.getCount();
+                        if (collection2Start >= nbrItems) {
+                            collection2Start = nbrItems - 1;
                         }
                         final String tmpStr;
-                        if ((EBookLauncherActivity.this.collection2Start + 1) < nbrItems) {
-                            tmpStr = String
-                                    .format(EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_1),
-                                            EBookLauncherActivity.this.collection2Start + 1,
-                                            (EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                    : EBookLauncherActivity.this.collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
-                                            nbrItems);
+                        if (collection2Start + 1 < nbrItems) {
+                            tmpStr = String.format(
+                                    EBookLauncherActivity.this.getResources().getString(
+                                            R.string.page1_nbr_item_format_1), collection2Start + 1, collection2Start
+                                            + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                            : collection2Start + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, nbrItems);
                         } else {
                             tmpStr = String.format(
                                     EBookLauncherActivity.this.getResources().getString(
-                                            R.string.page1_nbr_item_format_2),
-                                    EBookLauncherActivity.this.collection2Start + 1, nbrItems);
+                                            R.string.page1_nbr_item_format_2), collection2Start + 1, nbrItems);
                         }
                         EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                EBookLauncherActivity.this.lblCollection2.setText(clctname + " " + tmpStr);
+                                lblCollection2.setText(clctname + " " + tmpStr);
                             }
                         });
-                        EBookLauncherActivity.this.cursrCollcnts2.close();
-                        EBookLauncherActivity.this.cursrCollcnts2 = EBookLauncherActivity.this.myApp.dataMdl
-                                .getBooksInCollection(clctname, EBookLauncherActivity.this.collection2Start,
-                                        EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, BookSortBy.TITLE);
+                        cursrCollcnts2.close();
+                        cursrCollcnts2 = myApp.dataMdl.getBooksInCollection(clctname, collection2Start,
+                                EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, BookSortBy.TITLE);
                     }
 
                     EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (EditPreferences.useFilenames(EBookLauncherActivity.this)) {
-                                EBookLauncherActivity.this.listAdapterCollectns2 = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, R.layout.book_grid_item_filename,
-                                        EBookLauncherActivity.this.cursrCollcnts2, DeviceFactory
+                                listAdapterCollectns2 = new SimpleCursorAdapter(EBookLauncherActivity.this,
+                                        R.layout.book_grid_item_filename, cursrCollcnts2, DeviceFactory
                                                 .getBookColumnsToMap(true), BooksActivity.bookGridColsMapToFilename);
                             } else {
                                 int layoutId = R.layout.book_grid_item;
@@ -960,15 +920,13 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
                                         .equalsIgnoreCase(DeviceFactory.DEVICE_MANUFACTURER_BARNES_AND_NOBLE)) {
                                     layoutId = R.layout.book_grid_item_nook;
                                 }
-                                EBookLauncherActivity.this.listAdapterCollectns2 = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, layoutId,
-                                        EBookLauncherActivity.this.cursrCollcnts2, DeviceFactory
-                                                .getBookColumnsToMap(false), BooksActivity.bookGridColsMapTo);
+                                listAdapterCollectns2 = new SimpleCursorAdapter(EBookLauncherActivity.this, layoutId,
+                                        cursrCollcnts2, DeviceFactory.getBookColumnsToMap(false),
+                                        BooksActivity.bookGridColsMapTo);
 
                             }
-                            EBookLauncherActivity.this.setupList(EBookLauncherActivity.this.listviewCollectns2,
-                                    EBookLauncherActivity.this.listAdapterCollectns2,
-                                    EBookLauncherActivity.this.cursrCollcnts2);
+                            EBookLauncherActivity.this.setupList(listviewCollectns2, listAdapterCollectns2,
+                                    cursrCollcnts2);
                         }
                     });
                 } catch (final Exception e) {
@@ -985,59 +943,54 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
         new Thread() {
             @Override
             public void run() {
-                this.setName("updateCurrentlyReading()");
+                setName("updateCurrentlyReading()");
                 try {
-                    EBookLauncherActivity.this.cursrCurrentRead = EBookLauncherActivity.this.myApp.dataMdl
-                            .getCurrentlyReading(EBookLauncherActivity.this.getApplication());
-                    final int nbrItems = EBookLauncherActivity.this.cursrCurrentRead.getCount();
-                    if (EBookLauncherActivity.this.currentlyReadingStart >= nbrItems) {
-                        EBookLauncherActivity.this.currentlyReadingStart = nbrItems - 1;
+                    cursrCurrentRead = myApp.dataMdl.getCurrentlyReading(EBookLauncherActivity.this.getApplication());
+                    final int nbrItems = cursrCurrentRead.getCount();
+                    if (currentlyReadingStart >= nbrItems) {
+                        currentlyReadingStart = nbrItems - 1;
                     }
                     final String tmpStr;
-                    if ((EBookLauncherActivity.this.currentlyReadingStart + 1) < nbrItems) {
+                    if (currentlyReadingStart + 1 < nbrItems) {
                         tmpStr = String
                                 .format(EBookLauncherActivity.this.getResources().getString(
                                         R.string.page1_nbr_item_format_1),
-                                        EBookLauncherActivity.this.currentlyReadingStart + 1,
-                                        (EBookLauncherActivity.this.currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF) > nbrItems ? nbrItems
-                                                : EBookLauncherActivity.this.currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
+                                        currentlyReadingStart + 1,
+                                        currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF > nbrItems ? nbrItems
+                                                : currentlyReadingStart + EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF,
                                         nbrItems);
                     } else {
                         tmpStr = String.format(
                                 EBookLauncherActivity.this.getResources().getString(R.string.page1_nbr_item_format_2),
-                                EBookLauncherActivity.this.currentlyReadingStart + 1, nbrItems);
+                                currentlyReadingStart + 1, nbrItems);
                     }
                     EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            EBookLauncherActivity.this.lblCurrentRead.setText(EBookLauncherActivity.this.getResources()
-                                    .getString(R.string.page1_currently_reading_lbl) + " " + tmpStr);
+                            lblCurrentRead.setText(EBookLauncherActivity.this.getResources().getString(
+                                    R.string.page1_currently_reading_lbl)
+                                    + " " + tmpStr);
                         }
                     });
-                    EBookLauncherActivity.this.cursrCurrentRead.close();
-                    EBookLauncherActivity.this.cursrCurrentRead = EBookLauncherActivity.this.myApp.dataMdl
-                            .getCurrentlyReading(EBookLauncherActivity.this.getApplication(),
-                                    EBookLauncherActivity.this.currentlyReadingStart,
-                                    EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, null);
+                    cursrCurrentRead.close();
+                    cursrCurrentRead = myApp.dataMdl.getCurrentlyReading(EBookLauncherActivity.this.getApplication(),
+                            currentlyReadingStart, EBookLauncherActivity.NUMBER_BOOKS_ON_SHELF, null);
 
                     EBookLauncherActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (EditPreferences.useFilenames(EBookLauncherActivity.this)) {
-                                EBookLauncherActivity.this.listAdapterCurrentRead = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, R.layout.book_grid_item_filename,
-                                        EBookLauncherActivity.this.cursrCurrentRead, DeviceFactory
+                                listAdapterCurrentRead = new SimpleCursorAdapter(EBookLauncherActivity.this,
+                                        R.layout.book_grid_item_filename, cursrCurrentRead, DeviceFactory
                                                 .getBookColumnsToMap(true), BooksActivity.bookGridColsMapToFilename);
                             } else {
-                                EBookLauncherActivity.this.listAdapterCurrentRead = new SimpleCursorAdapter(
-                                        EBookLauncherActivity.this, DeviceFactory.getBookGridItemLayout(),
-                                        EBookLauncherActivity.this.cursrCurrentRead, DeviceFactory
+                                listAdapterCurrentRead = new SimpleCursorAdapter(EBookLauncherActivity.this,
+                                        DeviceFactory.getBookGridItemLayout(), cursrCurrentRead, DeviceFactory
                                                 .getBookColumnsToMap(false), BooksActivity.bookGridColsMapTo);
 
                             }
-                            EBookLauncherActivity.this.setupList(EBookLauncherActivity.this.listviewCurrentRead,
-                                    EBookLauncherActivity.this.listAdapterCurrentRead,
-                                    EBookLauncherActivity.this.cursrCurrentRead);
+                            EBookLauncherActivity.this.setupList(listviewCurrentRead, listAdapterCurrentRead,
+                                    cursrCurrentRead);
                         }
                     });
                 } catch (final Exception e) {
@@ -1048,6 +1001,6 @@ public final class EBookLauncherActivity extends Activity implements OnClickList
     }
 
     private void updateCurrentTime() {
-        this.lblClock.setText(DateFormat.format("kk:mm:ss", new Date()));
+        lblClock.setText(DateFormat.format("kk:mm:ss", new Date()));
     }
 }

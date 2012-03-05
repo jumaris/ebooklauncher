@@ -139,8 +139,8 @@ public final class EditPreferences extends PreferenceActivity {
     private ListPreference collection2Name;
     private EditTextPreference currentlyReading;
     private EBookLauncherApplication myApp;
-
     private EditTextPreference recentlyAdded;
+
     private final Preference.OnPreferenceChangeListener syncToggle = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(final Preference preference, final Object newValue) {
@@ -148,42 +148,46 @@ public final class EditPreferences extends PreferenceActivity {
             if (preference.getKey().equals(EditPreferences.PREF_RECENTLY_ADDED_NUMBER)) {
                 try {
                     EditPreferences.setRecentlyAddedDuration(EditPreferences.this, newValue.toString());
-                    EditPreferences.this.currentlyReading.setSummary(String.format(EditPreferences.this.getResources()
-                            .getString(R.string.pref_number_of_recently_added_summary), newValue));
+                    currentlyReading.setSummary(String.format(
+                            EditPreferences.this.getResources().getString(
+                                    R.string.pref_number_of_recently_added_summary), newValue));
                     retValue = true;
                 } catch (final Exception e) {
-                    Log.e(EBookLauncherApplication.LOG_TAG,
-                            EditPreferences.LOG_TAG + "onPreferenceChange()::Exception ", e);
+                    Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG
+                            + "onPreferenceChange()::Exception ", e);
                 }
             } else if (preference.getKey().equals(EditPreferences.PREF_CURRENT_READ_NUMBER)) {
                 try {
                     EditPreferences.setCurrentReadDuration(EditPreferences.this, newValue.toString());
-                    EditPreferences.this.currentlyReading.setSummary(String.format(EditPreferences.this.getResources()
-                            .getString(R.string.pref_number_of_recently_read_summary), newValue));
+                    currentlyReading.setSummary(String.format(
+                            EditPreferences.this.getResources()
+                                    .getString(R.string.pref_number_of_recently_read_summary), newValue));
                     retValue = true;
                 } catch (final Exception e) {
-                    Log.e(EBookLauncherApplication.LOG_TAG,
-                            EditPreferences.LOG_TAG + "onPreferenceChange()::Exception ", e);
+                    Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG
+                            + "onPreferenceChange()::Exception ", e);
                 }
             } else if (preference.getKey().equals(EditPreferences.PREF_COLLECTION1_NAME)) {
                 try {
                     EditPreferences.setCollectionName1(EditPreferences.this, newValue.toString());
-                    EditPreferences.this.collection1Name.setSummary(String.format(EditPreferences.this.getResources()
-                            .getString(R.string.pref_collection1_name_summary), newValue));
+                    collection1Name.setSummary(String.format(
+                            EditPreferences.this.getResources().getString(R.string.pref_collection1_name_summary),
+                            newValue));
                     retValue = true;
                 } catch (final Exception e) {
-                    Log.e(EBookLauncherApplication.LOG_TAG,
-                            EditPreferences.LOG_TAG + "onPreferenceChange()::Exception ", e);
+                    Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG
+                            + "onPreferenceChange()::Exception ", e);
                 }
             } else if (preference.getKey().equals(EditPreferences.PREF_COLLECTION2_NAME)) {
                 try {
                     EditPreferences.setCollectionName2(EditPreferences.this, newValue.toString());
-                    EditPreferences.this.collection2Name.setSummary(String.format(EditPreferences.this.getResources()
-                            .getString(R.string.pref_collection2_name_summary), newValue));
+                    collection2Name.setSummary(String.format(
+                            EditPreferences.this.getResources().getString(R.string.pref_collection2_name_summary),
+                            newValue));
                     retValue = true;
                 } catch (final Exception e) {
-                    Log.e(EBookLauncherApplication.LOG_TAG,
-                            EditPreferences.LOG_TAG + "onPreferenceChange()::Exception ", e);
+                    Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG
+                            + "onPreferenceChange()::Exception ", e);
                 }
             }
             return retValue;
@@ -194,8 +198,8 @@ public final class EditPreferences extends PreferenceActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            this.addPreferencesFromResource(R.xml.preferences);
-            this.myApp = (EBookLauncherApplication) this.getApplication();
+            addPreferencesFromResource(R.xml.preferences);
+            myApp = (EBookLauncherApplication) getApplication();
         } catch (final Exception e) {
             Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG + "onCreate()::Exception ", e);
         }
@@ -210,36 +214,36 @@ public final class EditPreferences extends PreferenceActivity {
     protected void onResume() {
         super.onResume();
         try {
-            final List<String> clctns = this.myApp.dataMdl.getCollectionNames(this);
+            final List<String> clctns = myApp.dataMdl.getCollectionNames(this);
             final String[] clcntNameArry = clctns.toArray(new String[clctns.size()]);
 
-            this.collection1Name = (ListPreference) this.findPreference(EditPreferences.PREF_COLLECTION1_NAME);
-            this.collection1Name.setOnPreferenceChangeListener(this.syncToggle);
-            this.collection1Name.setEntries(clcntNameArry);
-            this.collection1Name.setEntryValues(clcntNameArry);
+            collection1Name = (ListPreference) findPreference(EditPreferences.PREF_COLLECTION1_NAME);
+            collection1Name.setOnPreferenceChangeListener(syncToggle);
+            collection1Name.setEntries(clcntNameArry);
+            collection1Name.setEntryValues(clcntNameArry);
             String tmpValStr = EditPreferences.getCollectionName1(this);
-            this.collection1Name.setSummary(String.format(
-                    this.getResources().getString(R.string.pref_collection1_name_summary), tmpValStr));
+            collection1Name.setSummary(String.format(getResources().getString(R.string.pref_collection1_name_summary),
+                    tmpValStr));
 
-            this.collection2Name = (ListPreference) this.findPreference(EditPreferences.PREF_COLLECTION2_NAME);
-            this.collection2Name.setOnPreferenceChangeListener(this.syncToggle);
-            this.collection2Name.setEntries(clcntNameArry);
-            this.collection2Name.setEntryValues(clcntNameArry);
+            collection2Name = (ListPreference) findPreference(EditPreferences.PREF_COLLECTION2_NAME);
+            collection2Name.setOnPreferenceChangeListener(syncToggle);
+            collection2Name.setEntries(clcntNameArry);
+            collection2Name.setEntryValues(clcntNameArry);
             tmpValStr = EditPreferences.getCollectionName2(this);
-            this.collection2Name.setSummary(String.format(
-                    this.getResources().getString(R.string.pref_collection2_name_summary), tmpValStr));
+            collection2Name.setSummary(String.format(getResources().getString(R.string.pref_collection2_name_summary),
+                    tmpValStr));
 
-            this.currentlyReading = (EditTextPreference) this.findPreference(EditPreferences.PREF_CURRENT_READ_NUMBER);
-            this.currentlyReading.setOnPreferenceChangeListener(this.syncToggle);
+            currentlyReading = (EditTextPreference) findPreference(EditPreferences.PREF_CURRENT_READ_NUMBER);
+            currentlyReading.setOnPreferenceChangeListener(syncToggle);
             int tmpValInt = EditPreferences.getCurrentReadDuration(this);
-            this.currentlyReading.setSummary(String.format(
-                    this.getResources().getString(R.string.pref_number_of_recently_read_summary), tmpValInt));
+            currentlyReading.setSummary(String.format(
+                    getResources().getString(R.string.pref_number_of_recently_read_summary), tmpValInt));
 
-            this.recentlyAdded = (EditTextPreference) this.findPreference(EditPreferences.PREF_RECENTLY_ADDED_NUMBER);
-            this.recentlyAdded.setOnPreferenceChangeListener(this.syncToggle);
+            recentlyAdded = (EditTextPreference) findPreference(EditPreferences.PREF_RECENTLY_ADDED_NUMBER);
+            recentlyAdded.setOnPreferenceChangeListener(syncToggle);
             tmpValInt = EditPreferences.getRecentlyAddedDuration(this);
-            this.recentlyAdded.setSummary(String.format(
-                    this.getResources().getString(R.string.pref_number_of_recently_added_summary), tmpValInt));
+            recentlyAdded.setSummary(String.format(
+                    getResources().getString(R.string.pref_number_of_recently_added_summary), tmpValInt));
         } catch (final Exception e) {
             Log.e(EBookLauncherApplication.LOG_TAG, EditPreferences.LOG_TAG + "onResume()::Exception ", e);
         }
