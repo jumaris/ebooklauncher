@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/BookListItemLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dip"
+    android:background="@android:color/white"
+    android:paddingBottom="10dip" >
+
+    <ImageView
+        android:id="@+id/book_list_item_img"
+        android:layout_width="75dip"
+        android:layout_height="70dip"
+        android:maxHeight="70dip"
+        android:maxWidth="75dip"
+        android:minHeight="75dip"
+        android:padding="0dip"
+        android:src="@drawable/generic_book_cover" />
+
+    <TextView
+        android:id="@+id/book_list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/book_list_item_img"
+        android:layout_toRightOf="@+id/book_list_item_img"
+        android:lines="2"
+        android:hint="@string/book_details_title"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="6pt"
+        android:textStyle="normal|bold"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/book_list_item_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_list_item_title"
+        android:layout_alignLeft="@+id/book_list_item_title"
+        android:hint="@string/book_details_author"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="6pt"
+        android:textStyle="normal"
+        android:typeface="serif" />
+
+</RelativeLayout>

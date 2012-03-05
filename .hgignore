@@ -1,0 +1,10 @@
+glob:bin
+glob:gen
+glob:*.class
+glob:obj/*
+glob:jni/help
+glob:libs/armeabi/*
+glob:libs/*_dex2jar.jar
+glob:docs
+glob:.hg.old
+glob:libs/commons-io-2.1/

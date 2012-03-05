@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">eBookLauncher</string>
+    <string name="notification_importing_msg">Импорт Калибр Метаданные</string>
+    <string name="error_reading_in_book_metadata">Ошибка при Калибр импорт метаданных</string>
+    <string name="check_for_new_version">Проверка наличия новой версии</string>
+    <string name="new_version_available">Version %1$s is now Available</string>
+    <string name="page1_Apps">применения\n(%1$s)</string>
+    <string name="page1_Collections">Коллекции\n(%1$s)</string>
+    <string name="page1_Books">Книги\n(%1$s)</string>
+    <string name="page1_Periodicals">периодические издания\n(%1$s)</string>
+    <string name="page1_coverflow">Cover\nFlow</string>
+    <string name="page1_of_3">страница 1 из 3</string>
+    <string name="page1_currently_reading_lbl">В настоящее время чтения</string>
+    <string name="page1_collection_lbl">Коллекция Имя</string>
+    <string name="page1_nbr_item_format_1">(%1$d - %2$d of %3$d)</string>
+    <string name="page1_nbr_item_format_2">(%1$d of %2$d)</string>
+    <string name="page2_applications">применения</string>
+    <string name="page2_apps_selection_dialog_title">Выберите Приложения</string>
+    <string name="page2_apps_selection_dialog_btn_ok">ОК</string>
+    <string name="page2_Google_Books">Google Книги</string>
+    <string name="page2_Public_Library">публичная библиотека</string>
+    <string name="page2_Browser">браузер</string>
+    <string name="page2_Purchased_Content">приобретенного контента</string>
+    <string name="page2_All_Notes">Все заметки\n(%1$s)</string>
+    <string name="page2_Dictionary">словарь\n</string>
+    <string name="page2_Handwriting">почерк\n(%1$s)</string>
+    <string name="page2_Text_Memo">текст Memo\n(%1$s)</string>
+    <string name="page2_Pictures">Pictures\n(%1$s)</string>
+    <string name="page2_Audio">Audio\n(%1$s)</string>
+    <string name="page2_Sony_Settings">Sony Settings</string>
+    <string name="page2_Android_Settings">Android Settings</string>
+    <string name="page2_text_apps">применения</string>
+    <string name="page2_of_3">страница 2 из 3</string>
+    <string name="page3_of_3">страница 3 из 3</string>
+    <string name="recent_book_grid_title">%1$s Книги (недавний)</string>
+    <string name="view_preferences_title">Предпочтения</string>
+    <string name="pref_number_of_recently_read">Ряд недавних читать книги</string>
+    <string name="pref_number_of_recently_read_summary">Показать [%1$s] книги "В настоящее время чтение" раздел</string>
+    <string name="pref_number_of_recently_added">Количество Недавно добавленные книги</string>
+    <string name="pref_number_of_recently_added_summary">Показать [%1$s] книги в "Недавно добавленные" раздел</string>
+    <string name="pref_collection1_name">сбор 1</string>
+    <string name="pref_collection1_name_summary">Показать коллекцию [%1$s] на главном экране</string>
+    <string name="pref_collection2_name">сбор 2</string>
+    <string name="pref_collection2_name_summary">Показать коллекцию [%1$s] на главном экране</string>
+
+    <!-- These collections need a character at the front to make sure that they stand out from the proper collections -->
+    <string name="pref_collection_recently_added">* Недавно добавленные</string>
+    <string name="pref_collection_periodicals">* периодические издания</string>
+    <string name="pref_use_alternate_screen">Использование альтернативных Макет экрана</string>
+    <string name="pref_use_alternate_screen_yes">Use a Grid of books for homescreen</string>
+    <string name="pref_use_alternate_screen_no">Use Currently Reading and two collections for homescreen</string>
+    <string name="pref_use_filenames">Показать Имена файлов</string>
+    <string name="pref_use_filenames_yes">Показать книги имена файлов, а не название / автор</string>
+    <string name="pref_use_filenames_no">Показать книги название / автор</string>
+
+    <!-- Periodical grid screen -->
+    <string name="periodical_grid_title">периодические издания (все)</string>
+    <string name="periodical_grid_sorted_title">Сортировать по название</string>
+    <string name="periodical_grid_sorted_number_books">Сортировать по Nbr Books</string>
+
+    <!-- Text Notes grid screen -->
+    <string name="text_note_grid_title">Текстовые заметки (все)</string>
+    <string name="text_note_grid_sorted_title">Сортировать по название</string>
+    <string name="text_note_grid_sorted_number_books">Сортировать по Nbr Books</string>
+
+    <!-- Book grid screen -->
+    <string name="book_grid_title">%1$s Книги (все)</string>
+    <string name="book_grid_title_filtered">%1$s Книги (%2$s)</string>
+    <string name="book_grid_title_collection">%1$s Книги (in %2$s)</string>
+    <string name="book_grid_sorted_title">Сортировать по название</string>
+    <string name="book_grid_sorted_author">Сортировать по автор</string>
+    <string name="book_grid_sorted_added">Сортировать по Date Added</string>
+    <string name="book_grid_sorted_filename">Сортировать по имя файла</string>
+    <string name="book_grid_sorted_last_read">Сортировать по Date Read</string>
+    <string name="book_grid_filter_dialog_title">Выберите коллекции</string>
+    <string name="book_grid_filter_dialog_btn_ok">Okay</string>
+    <string name="book_grid_search_dialog_title">Search For:</string>
+    <string name="book_grid_search_dialog_btn_ok">Okay</string>
+    <string name="book_grid_search_dialog_btn_cancel">Cancel</string>
+    <string name="book_grid_sort_title">название</string>
+    <string name="book_grid_sort_author">автор</string>
+    <string name="book_grid_sort_collection">сбор</string>
+    <string name="book_grid_sort_filename">имя файла</string>
+
+    <!-- Collection list screen -->
+    <string name="collection_list_title">%1$s Коллекции (все)</string>
+    <string name="collection_list_title_filtered">%1$s Коллекции (%2$s)</string>
+    <string name="collection_list_sorted_title">Сортировать по название</string>
+    <string name="collection_list_sorted_nbrBooks">Сортировать по Number of Books</string>
+
+    <!-- Book details screen -->
+    <string name="book_details_title">Details</string>
+    <string name="book_details_series">Series</string>
+    <string name="book_details_author">Author</string>
+    <string name="book_details_publisher">Publisher</string>
+    <string name="book_details_tags">Tags</string>
+    <string name="book_details_collections">Collections</string>
+    <string name="book_details_isbn">ISBN</string>
+    <string name="book_details_summary">Summary</string>
+
+    <!-- Home Menus -->
+    <string name="menu_about">около</string>
+    <string name="menu_settings">Глобальные настройки</string>
+    <string name="menu_preferences">Мои настройки Главная</string>
+    <string name="menu_clear_default_settings">Очистить по умолчанию App</string>
+    <string name="menu_select_apps">Выбор приложения</string>
+    <string name="menu_choose_collection">Выбери серию</string>
+    <string name="menu_clear_filters">Очистить фильтры</string>
+
+</resources>

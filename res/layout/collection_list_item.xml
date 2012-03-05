@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dip"
+    android:background="@android:color/white"
+    android:padding="6dip" >
+
+    <TextView
+        android:id="@+id/collection_list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="20pt"
+        android:layout_margin="2dip"
+        android:layout_marginRight="5dip"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="10pt"
+        android:textStyle="normal|bold"
+        android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="0dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="0dip"
+        android:text="["
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/collection_list_item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dip"
+        android:text="000"
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dip"
+        android:text="]"
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:typeface="serif" />
+
+</LinearLayout>

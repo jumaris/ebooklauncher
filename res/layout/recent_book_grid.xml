@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/BookDetailsMainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="5dip"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recent_book_grid_main_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/recent_book_grid_btn_prevpage"
+        android:layout_toRightOf="@+id/book_grid_btn_index_scroll"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/recent_book_grid_toolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/underline"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/recent_book_grid_toolbar_text"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/recent_book_grid_txt_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="book_grid_txt_books"
+                    android:text="@string/book_grid_title"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/recent_book_grid_txt_sort_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_grid_sorted_title"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/recent_book_grid_btn_sort"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_sort"
+                android:tag="recent_book_grid_btn_sort" />
+        </LinearLayout>
+
+        <uk.co.droidinactu.common.view.EInkGridView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recent_book_grid_books"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:numColumns="4" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/recent_book_grid_btn_prevpage"
+        android:layout_width="100dip"
+        android:layout_height="22dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/btn_previous_normal"
+        android:padding="0dip"
+        android:tag="prevpage" />
+
+    <TextView
+        android:id="@+id/recent_book_grid_text_page_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/recent_book_grid_btn_prevpage"
+        android:paddingLeft="35dip"
+        android:text="@string/page3_of_3"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/recent_book_text_clock"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="18dip"
+        android:layout_marginRight="8dip"
+        android:layout_toRightOf="@+id/recent_book_grid_text_page_number" />
+
+</RelativeLayout>

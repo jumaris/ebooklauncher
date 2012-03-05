@@ -1,0 +1,160 @@
+
+<!-- saved from url=(0044)http://burtleburtle.net/bob/hash/spooky.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>SpookyHash: a 128-bit noncryptographic hash</title>
+</head>
+<body>
+
+<center><h3>SpookyHash: a 128-bit noncryptographic hash</h3></center>
+
+<p>SpookyHash is a public domain noncryptographic hash function producing
+well-distributed 128-bit hash values for byte arrays of any length.
+It can produce 64-bit and 32-bit hash values too, at the same speed, just
+use the bottom n bits.  The C++ reference implementation is specific
+to 64-bit x86 platforms, in particular it assumes the processor is
+little endian.  Long keys hash in 3 bytes per cycle, short keys take
+about 1 byte per cycle, and there is a 30 cycle startup cost.  Keys
+can be supplied in fragments. The function allows a 128-bit seed.
+It's named SpookyHash because it was released on Halloween.</p>
+
+<p>C++ code for SpookyHash:
+  </p><ul>
+    <li><a href="http://burtleburtle.net/bob/c/spooky.h">spooky.h</a></li>
+    <li><a href="http://burtleburtle.net/bob/c/spooky.cpp">spooky.cpp</a></li>
+    <li><a href="http://burtleburtle.net/bob/c/testspooky.cpp">testspooky.cpp</a></li>
+  </ul>
+
+<p>Why use SpookyHash?
+ </p><ul>
+  <li>It's fast.  For short keys it's 1 byte per cycle, with a 30 cycle
+  startup cost.  For long keys, well, it would be 3 bytes per cycle,
+  and that only occupies one core.  Except you'll hit the limit of
+  how fast uncached memory can be read, which on my home machines is
+  less than 2 bytes per cycle.</li>
+
+  <li>It's good.  It achieves avalanche for 1-bit and 2-bit
+  inputs.  It works for any type of key that can be made to look like
+  an array of bytes, or list of arrays of bytes.  It takes a seed, so
+  it can produce many different independent hashes for the same key.</li>
+
+  <li>It can produce up to 128-bit results.  Large systems should
+  consider using 128-bit checksums nowadays.  A library with 4 billion
+  documents is expected to have about 1 colliding 64-bit checksum no
+  matter how good the hash is.  Libraries using 128-bit checksums
+  should expect 1 collision once they hit 16 quintillion documents.
+  (Due to limited hardware, I can only verify SpookyHash is as good as
+  a good 73-bit checksum.  It might be better, I can't tell.)</li>
+
+  <li>When NOT to use it: if you have an opponent.  This
+  is not cryptographic.  Given a message, a resourceful opponent could
+  write a tool that would produce a modified message with the same hash
+  as the original message.  Once such a tool is written, a
+  not-so-resourceful opponent could borrow the tool and do the same
+  thing.</li>
+
+  <li>Another case not to use it: CRCs have a nice property that you
+  can split a message up into pieces arbitrarily, calculate the CRC
+  all the pieces, then aftewards combine the CRCs for the pieces to
+  find the CRC for the concatenation of all those pieces.  SpookyHash
+  can't.  If you could deterministically choose what the pieces were,
+  though, you could compute the hashes for pieces with SpookyHash (or
+  <a href="http://code.google.com/p/cityhash/">CityHash</a> or any
+  other hash), then treat those hash values as the raw data, and do
+  CRCs on top of that.</li>
+
+  <li>Big-endian machines aren't supported by the current
+  implementation.  The hash would run, and it would produce equally
+  good results, but they'd be different results from little-endian
+  platforms.  Machines that can't handle unaligned reads also
+  won't work by default, but there's a macro in the implementation to
+  tweak that will let it deal with unaligned reads.  x86-compatible
+  machines are little-endian and support unaligned reads.</li>
+
+ </ul>
+<p></p>
+
+<p>For long keys, the inner loop of SpookyHash is Spooky::Mix().  It
+consumes an 8-byte input, then does an xor, another xor, a rotation,
+and an addition.  The internal state won't entirely fit in registers
+  after 3 or 4 8-byte variables.  But parallelism keeps increasing,
+  and so does avalanche per pass.  There was a sweet spot around 12
+  variables.</p>
+
+<p>My <a href="http://burtleburtle.net/bob/c/lookup2.c">previous</a> <a href="http://burtleburtle.net/bob/c/lookup3.c">hashes</a> would have added 12 8-byte inputs
+to the 12 variables, then done a few passes through all the variables
+to mix them well, then added the next batch of inputs.  That is
+tested by <a href="http://burtleburtle.net/bob/hash/avalanche.html">avalanche.html</a>.  Unlike my previous
+hashes, Spooky::Mix() is trickle-feed.  It adds an input to one
+variable, does a little mixing, then adds data to the next variable.
+There is no bulk mixing stage in between groups of 12 variables; the
+processing treats all variables symmetrically.  Trickle-feeding should
+allow chips to keep a static workload, doing a steady
+proportion of memory fetches, additions, XORs, and rotates
+simultaneously.</p>
+
+<p>Testing a trickle-feed mix was a new problem.  As always, it has to
+work equally well when run forward or backwards.  As always, every
+input bit has to produce 128 bits of apparent entropy before all those
+bits could be canceled by other input bits.  (128 bits, because the
+hash produces a 128-bit result.)  My handwave is that after 12 8-byte
+inputs, there has been as much input as there is internal state, so
+anything could be overwritten.  So if a delta appears to produce 128
+bits of entropy by 12 8-byte inputs after the delta starts, that's
+good enough.  I wrote <a href="http://burtleburtle.net/bob/c/screen.cpp">screen.cpp</a> to
+check for that.</p>
+
+<p>I tried SSE2 instructions, and 64-bit multiplications, but it
+turned out that plain 64-bit rotate, addition, and XOR got results
+faster than those.  I thought 4 or 6 variable schemes were
+going to win, but 12 variables won in the end.  My boss suggests I
+look into GPUs.  I haven't tried that yet.  But given that the memory
+bandwidth is maxed out, I doubt they would help.</p>
+
+<p>While Spooky::Mix() handles the middle of long keys well, it would
+need 4 repetitions for the final mix, and it has a huge startup cost.
+That would make short keys expensive.  So I found the ShortHash to
+produce a 128-bit hash of short keys with little startup cost, and
+Spooky::End() to reduce the final mixing cost (this shows up most for
+keys just over 192 bytes long).  Those components aren't trickle-feed,
+they work the old way.  ShortHash is used automatically for short keys.</p>
+
+<p>My <a href="http://burtleburtle.net/bob/c/froggy.cpp">frog test</a> is the most stringent
+test I have for 64-bit and 128-bit noncryptogrpahic hashes.  It hashes
+n-byte keys that are all zero except for m bits set, for all possible
+choices of m bits, and looks for collisions.  Once it maxes out memory
+it keeps as many hashes as it can and continues churning through keys.
+Ideally you'd test a 128-bit hash by checking 2<sup>128</sup> key-pairs, which
+should produce about 1 collision if the function is adequately random.
+That's way beyond my means.  2<sup>72</sup> key-pairs is about the
+limit of my testing abilities.</p>
+
+<p>I have not tried the CRC32 instruction that started in the Nehalem
+Intel chips, because I don't have one.  Google has,
+with <a href="http://code.google.com/p/cityhash/">CityHash</a>.  They
+claim 6 bytes per cycle, which is faster than any hash I've seen.  On
+my machine CityHash about half the speed of SpookyHash; mine doesn't
+have a CRC32 instruction.  CityHash passes my frog test for at least 
+2<sup>72</sup> keypairs.</p> 
+
+<p>The number of key-pairs covered scales linearly with the
+speed and number of CPUs and time dedicated to the task, and
+quadratically with the memory and disk that can be thrown at it.  My
+current implementation of the frog test can use all a machine's cores, but
+it only uses RAM to hold the keys.  I'm working on another version
+(named the hog test) that would use all the disk, RAM, and CPU you could
+throw at it.  If you could produce 16 petabytes
+of 16-byte hashes, and sort them, and detect collisions, that would
+cover 2<sup>100</sup> key-pairs.  Sorting 16 terabytes of hashes would
+cover 2<sup>80</sup> key-pairs.  This would look remarkably like the
+terasort benchmark, except it would be actually accomplishing
+something useful.</p>
+
+<!--
+February 2, 2012.  Production, same bits as Beta.
+December 31, 2011.  Beta.  Long mix seems OK, was tested for 2-bit deltas.
+October 31, 2011.  Alpha again.  ShortHash enabled, long mix is flawed.
+October 31, 2010.  Alpha.  ShortHash disabled.  Use 3 mixes for final.
+-->
+
+
+<mytubeelement id="myTubeElement" desktopnotification="true" soundnotification="true" enable="true" loop="false" hidepopup="false" autoplay="false" autobuffer="true" autoplayonbuffer="false" autoplayonbufferpercentage="42" autoplayonsmartbuffer="true" quality="hd720" fshd="false" onlynotification="false" enablefullscreen="true" savebandwidth="false"><bundle label_delimitor=":" percentage="%" smart_buffer="Smart Buffer" start_playing_when_buffered="Start playing when buffered" sound="Sound" desktop_notification="Desktop Notification" continuation_on_next_line="-" loop="Loop" only_notify="Only Notify" estimated_time="Estimated Time" global_preferences="Global Preferences" no_notification_supported_on_your_browser="No notification style supported on your browser version" video_buffered="Video Buffered" buffered="Buffered" hyphen="-" buffered_message="The video has been buffered as requested and is ready to play." not_supported="Not Supported" on="On" off="Off" click_to_enable_for_this_site="Click to enable for this site" desktop_notification_denied="You have denied permission for desktop notification for this site" notification_status_delimitor=";" error="Error" adblock_interferance_message="Adblock (or similar extension) is known to interfere with SmartVideo. Please add this url to adblock whitelist." calculating="Calculating" waiting="Waiting" will_start_buffering_when_initialized="Will start buffering when initialized" will_start_playing_when_initialized="Will start playing when initialized" completed="Completed" stopped="Stopped" hr="Hr" min="Min" sec="Sec" any_moment="Any Moment" extension_id="lnkdbjbjpnpjeciipoaflmpcddinpjjp"></bundle></mytubeelement></body><script src="chrome-extension://lnkdbjbjpnpjeciipoaflmpcddinpjjp/mytube.js"></script><link href="chrome-extension://lnkdbjbjpnpjeciipoaflmpcddinpjjp/mytube.css" rel="stylesheet" type="text/css"></html>

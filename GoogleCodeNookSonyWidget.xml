@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="Nooks Savings Target" />
+ <Content type="html">
+     <![CDATA[ 
+       <img src="http://chart.apis.google.com/chart?chxs=0,676767,10.5&chxt=x&chs=300x225&cht=p&chco=5F4FF5&chd=s:BE&chdl=+3|+6&chl=Sony|Nook&chtt=Nook+vs+Sony" width="300" height="225" alt="Nook vs Sony" />
+     ]]>
+  </Content> 
+</Module>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/BookGridItemLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="1dip" >
+
+    <ImageView
+        android:id="@+id/app_list_item_img"
+        android:layout_width="75dip"
+        android:layout_height="70dip"
+        android:maxHeight="70dip"
+        android:maxWidth="75dip"
+        android:minHeight="75dip"
+        android:padding="0dip"
+        android:src="@drawable/generic_book_cover" />
+
+    <TextView
+        android:id="@+id/app_list_title"
+        android:layout_width="115dip"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/book_details_title"
+        android:maxLines="2"
+        android:maxWidth="115dip"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold"
+        android:typeface="serif" />
+
+</LinearLayout>

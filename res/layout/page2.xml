@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dip"
+        android:background="@android:color/white" >
+
+        <TableRow
+            android:id="@+id/tableRowNetwork1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:id="@+id/page2_btn_public_library"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_public_library"
+                android:tag="public library"
+                android:text="@string/page2_Public_Library" />
+
+            <Button
+                android:id="@+id/page2_btn_google_books"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_google_books"
+                android:tag="google books"
+                android:text="@string/page2_Google_Books" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowNetwork2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:background="@drawable/underline"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:id="@+id/page2_btn_browser"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_web_browser"
+                android:tag="browser"
+                android:text="@string/page2_Browser" />
+
+            <Button
+                android:id="@+id/page2_btn_purchased_content"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_readerstore"
+                android:tag="purchased content"
+                android:text="@string/page2_Purchased_Content" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowReference1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:id="@+id/page2_btn_all_notes"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_notes"
+                android:tag="all notes"
+                android:text="@string/page2_All_Notes" />
+
+            <Button
+                android:id="@+id/page2_btn_dictionary"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_dictionary"
+                android:tag="dictionary"
+                android:text="@string/page2_Dictionary" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowReference2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:background="@drawable/underline"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:id="@+id/page2_btn_handwriting"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_handwriting"
+                android:tag="handwriting"
+                android:text="@string/page2_Handwriting" />
+
+            <Button
+                android:id="@+id/page2_btn_text_memo"
+                android:layout_width="185dip"
+                android:layout_height="62dip"
+                android:drawableLeft="@drawable/ic_text_memo"
+                android:tag="text memo"
+                android:text="@string/page2_Text_Memo" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowAppsLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip" >
+
+            <TextView
+                android:id="@+id/page2_text_apps"
+                style="@style/MyDefaultTextAppearance"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:text="@string/page2_text_apps"
+                android:textColor="@android:color/black" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowApps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip" >
+
+            <LinearLayout
+                android:id="@+id/page1_current_reading_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="121dip"
+                android:layout_span="2"
+                android:background="@drawable/underline"
+                android:orientation="horizontal"
+                android:padding="0dip" >
+
+                <ImageView
+                    android:id="@+id/page2_btn_prev_apps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/btn_previous"
+                    android:padding="0dip"
+                    android:tag="prev_apps" />
+
+                <uk.co.droidinactu.common.view.HorizontialListView
+                    android:id="@+id/page2_apps"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="8dip"
+                    android:layout_weight="2"
+                    android:background="@android:color/transparent"
+                    android:padding="0dip" />
+
+                <ImageView
+                    android:id="@+id/page2_btn_next_apps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/btn_next"
+                    android:padding="0dip"
+                    android:tag="next_apps" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+    <ImageButton
+        android:id="@+id/page2_btn_prevpage"
+        android:layout_width="100dip"
+        android:layout_height="22dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/btn_previous_normal"
+        android:padding="0dip"
+        android:tag="prevpage" />
+
+    <TextView
+        android:id="@+id/page2_text_page_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/page2_text_clock"
+        android:paddingLeft="35dip"
+        android:text="@string/page2_of_3"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/page2_text_clock"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="18dip"
+        android:layout_marginRight="8dip"
+        android:layout_toLeftOf="@+id/page2_btn_nextpage" />
+
+    <ImageButton
+        android:id="@+id/page2_btn_nextpage"
+        android:layout_width="100dip"
+        android:layout_height="22dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_next_normal"
+        android:padding="0dip"
+        android:tag="nextpage" />
+
+</RelativeLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/BookDetailsMainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <ScrollView
+        android:id="@+id/book_grid_btn_index_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/book_grid_btn_index"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:paddingBottom="0dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="0dip" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@+id/book_grid_btn_index_scroll"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/book_grid_toolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/underline"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/book_grid_toolbar_text"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/book_grid_txt_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="book_grid_txt_books"
+                    android:text="@string/book_grid_title"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/book_grid_txt_sort_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_grid_sorted_title"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/book_grid_btn_grid"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_list"
+                android:tag="book_grid_btn_grid" />
+
+            <ImageButton
+                android:id="@+id/book_grid_btn_filter"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_filter"
+                android:tag="book_grid_btn_filter" />
+
+            <ImageButton
+                android:id="@+id/book_grid_btn_sort"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_sort"
+                android:tag="book_grid_btn_sort" />
+
+            <ImageButton
+                android:id="@+id/book_grid_btn_search"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_search"
+                android:tag="book_grid_btn_search" />
+
+            <ImageButton
+                android:id="@+id/book_grid_btn_close"
+                android:layout_width="44dip"
+                android:layout_height="44dip"
+                android:layout_gravity="right"
+                android:src="@drawable/btn_close"
+                android:tag="book_grid_btn_close" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/BookDetailsGridAndList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white" >
+
+            <uk.co.droidinactu.common.view.EInkGridView
+                android:id="@+id/book_grid_books"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/white"
+                android:numColumns="4" />
+
+            <uk.co.droidinactu.common.view.EInkListView
+                android:id="@+id/book_grid_books_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

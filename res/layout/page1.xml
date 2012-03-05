@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/page1_main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <TextView
+        android:id="@+id/page1_text_currently_reading_lbl"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:padding="0dip"
+        android:text="@string/page1_currently_reading_lbl"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/page1_current_reading_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="119dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/page1_text_currently_reading_lbl"
+        android:background="@drawable/underline"
+        android:orientation="horizontal"
+        android:padding="0dip" >
+
+        <ImageView
+            android:id="@+id/page1_btn_prev_currnt_read"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_previous"
+            android:padding="0dip"
+            android:tag="prev_currnt_read" />
+
+        <uk.co.droidinactu.common.view.HorizontialListView
+            android:id="@+id/page1_current_reading"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:padding="0dip" />
+
+        <ImageView
+            android:id="@+id/page1_btn_next_currnt_read"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_next"
+            android:padding="0dip"
+            android:tag="next_currnt_read" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/page1_text_collection1_lbl"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/page1_current_reading_layout"
+        android:layout_below="@+id/page1_current_reading_layout"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:padding="0dip"
+        android:text="@string/page1_collection_lbl" />
+
+    <LinearLayout
+        android:id="@+id/page1_collection1_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="119dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/page1_text_collection1_lbl"
+        android:background="@drawable/underline"
+        android:orientation="horizontal"
+        android:padding="0dip" >
+
+        <ImageView
+            android:id="@+id/page1_btn_prev_collection1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_previous"
+            android:padding="0dip"
+            android:tag="prev_collection1" />
+
+        <uk.co.droidinactu.common.view.HorizontialListView
+            android:id="@+id/page1_collections_list1"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:padding="0dip" />
+
+        <ImageView
+            android:id="@+id/page1_btn_next_collection1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_next"
+            android:padding="0dip"
+            android:tag="next_collection1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/page1_text_collection2_lbl"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/page1_collection1_layout"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:padding="0dip"
+        android:text="@string/page1_collection_lbl" />
+
+    <LinearLayout
+        android:id="@+id/page1_collection2_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="119dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/page1_text_collection2_lbl"
+        android:background="@drawable/underline"
+        android:orientation="horizontal"
+        android:padding="0dip" >
+
+        <ImageView
+            android:id="@+id/page1_btn_prev_collection2"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_previous"
+            android:padding="0dip"
+            android:tag="prev_collection2" />
+
+        <uk.co.droidinactu.common.view.HorizontialListView
+            android:id="@+id/page1_collections_list2"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:padding="0dip" />
+
+        <ImageView
+            android:id="@+id/page1_btn_next_collection2"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_next"
+            android:padding="0dip"
+            android:tag="next_collection2" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/page1_btn_books"
+        android:layout_width="125dip"
+        android:layout_height="40dip"
+        android:layout_above="@+id/page1_btn_periodicals"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="-4dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="0dip"
+        android:drawableLeft="@drawable/ic_mybooks"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="books"
+        android:text="@string/page1_Books"
+        android:textSize="7pt" />
+
+    <Button
+        android:id="@+id/page1_btn_periodicals"
+        android:layout_width="125dip"
+        android:layout_height="40dip"
+        android:layout_above="@+id/page1_btn_nextpage"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="-4dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="0dip"
+        android:drawableLeft="@drawable/ic_periodical"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="periodicals"
+        android:text="@string/page1_Periodicals"
+        android:textSize="7pt" />
+
+    <Button
+        android:id="@+id/page1_btn_collections"
+        android:layout_width="135dip"
+        android:layout_height="40dip"
+        android:layout_alignTop="@+id/page1_btn_books"
+        android:layout_marginBottom="0dip"
+        android:layout_marginTop="0dip"
+        android:layout_toRightOf="@+id/page1_btn_books"
+        android:drawableLeft="@drawable/ic_collections"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="collections"
+        android:text="@string/page1_Collections"
+        android:textSize="7pt" />
+
+    <Button
+        android:id="@+id/page1_btn_apps"
+        android:layout_width="125dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/page1_btn_books"
+        android:layout_marginBottom="0dip"
+        android:layout_marginTop="0dip"
+        android:drawableLeft="@drawable/ic_launcher_allshow"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="apps"
+        android:text="@string/page1_Apps"
+        android:textSize="7pt" />
+
+    <Button
+        android:id="@+id/page1_btn_coverflow"
+        android:layout_width="125dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/page1_btn_periodicals"
+        android:layout_marginBottom="0dip"
+        android:layout_marginTop="0dip"
+        android:drawableLeft="@drawable/ic_coverflow"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="coverflow"
+        android:text="@string/page1_coverflow"
+        android:textSize="7pt" />
+
+    <Button
+        android:id="@+id/page1_btn_settings"
+        android:layout_width="135dip"
+        android:layout_height="40dip"
+        android:layout_alignTop="@+id/page1_btn_periodicals"
+        android:layout_marginBottom="0dip"
+        android:layout_marginTop="0dip"
+        android:layout_toRightOf="@+id/page1_btn_periodicals"
+        android:drawableLeft="@drawable/ic_menu_preferences"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="0dip"
+        android:tag="settings"
+        android:text="@string/page1_settings"
+        android:textSize="7pt" />
+
+    <TextView
+        android:id="@+id/page1_text_app_version_nbr"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="18dip"
+        android:layout_marginRight="8dip" />
+
+    <TextView
+        android:id="@+id/page1_text_page_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/page1_text_clock"
+        android:paddingLeft="35dip"
+        android:text="@string/page1_of_3"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/page1_text_clock"
+        style="@style/MyDefaultTextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="18dip"
+        android:layout_marginRight="8dip"
+        android:layout_toLeftOf="@+id/page1_btn_nextpage" />
+
+    <ImageButton
+        android:id="@+id/page1_btn_nextpage"
+        android:layout_width="100dip"
+        android:layout_height="22dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_next_normal"
+        android:padding="0dip"
+        android:tag="nextpage" />
+
+</RelativeLayout>

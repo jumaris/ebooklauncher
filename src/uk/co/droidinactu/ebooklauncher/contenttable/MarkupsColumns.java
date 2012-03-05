@@ -1,0 +1,53 @@
+package uk.co.droidinactu.ebooklauncher.contenttable;
+
+import android.provider.BaseColumns;
+
+public abstract interface MarkupsColumns extends BaseColumns {
+    public static final String ADDED_DATE = "added_date";
+    public static final String ALIAS_FILE_PATH1 = "file1";
+    public static final String ALIAS_FILE_PATH2 = "file2";
+    public static final String COMMENT = "comment";
+    public static final String CONTENT_ID = "content_id";
+    public static final String CROP_BOTTOM = "crop_bottom";
+    public static final String CROP_LEFT = "crop_left";
+    public static final String CROP_MODE = "crop_mode";
+    public static final String CROP_RIGHT = "crop_right";
+    public static final String CROP_TOP = "crop_top";
+    public static final String FONT_SIZE = "font_size";
+    public static final String FONT_STYLE = "font_style";
+    public static final String MARK = "mark";
+    public static final String MARK_END = "mark_end";
+    public static final String MARKED_TEXT = "marked_text";
+    public static final String MARKUP_TYPE = "markup_type";
+    public static final String MODIFIED_DATE = "modified_date";
+    public static final String NAME = "name";
+    public static final String ORIENTATION = "orientation";
+    public static final String PAGE = "page";
+    public static final String PAGE_INDEX = "page_style_index";
+    public static final String PAGE_STYLE = "page_style";
+    public static final String TEXT_ENCODING = "text_encoding";
+    public static final String TOTAL_PAGE = "total_page";
+    public static final String TYPE_ADDED_DATE = "INTEGER";
+    public static final String TYPE_COMMENT = "TEXT";
+    public static final String TYPE_CONTENT_ID = "INTEGER";
+    public static final String TYPE_CROP_BOTTOM = "INTEGER";
+    public static final String TYPE_CROP_LEFT = "INTEGER";
+    public static final String TYPE_CROP_MODE = "INTEGER";
+    public static final String TYPE_CROP_RIGHT = "INTEGER";
+    public static final String TYPE_CROP_TOP = "INTEGER";
+    public static final String TYPE_FONT_SIZE = "INTEGER";
+    public static final String TYPE_FONT_STYLE = "TEXT";
+    public static final String TYPE_ID = "INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String TYPE_MARK = "BLOB";
+    public static final String TYPE_MARK_END = "BLOB";
+    public static final String TYPE_MARKED_TEXT = "TEXT";
+    public static final String TYPE_MARKUP_TYPE = "INTEGER";
+    public static final String TYPE_MODIFIED_DATE = "INTEGER";
+    public static final String TYPE_NAME = "TEXT";
+    public static final String TYPE_ORIENTATION = "INTEGER";
+    public static final String TYPE_PAGE = "DOUBLE";
+    public static final String TYPE_PAGE_INDEX = "INTEGER";
+    public static final String TYPE_PAGE_STYLE = "INTEGER";
+    public static final String TYPE_TEXT_ENCODING = "TEXT";
+    public static final String TYPE_TOTAL_PAGE = "INTEGER";
+}

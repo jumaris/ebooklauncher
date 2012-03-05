@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- This group uses the default category. -->
+
+    <group android:id="@+id/menuGroup_BkLstCntxt" >
+
+        <item
+            android:icon="@drawable/ic_menu_view"
+            android:id="@+id/menu_BkLstDetails"
+            android:orderInCategory="110"
+            android:title="Details"/>
+
+        <item
+            android:icon="@drawable/ic_menu_delete"
+            android:id="@+id/menu_BkLstDelete"
+            android:orderInCategory="110"
+            android:title="Delete"/>
+    </group>
+
+</menu>

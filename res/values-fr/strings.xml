@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">eBookLauncher</string>
+    <string name="notification_importing_msg">Import des données de Calibre</string>
+    <string name="error_reading_in_book_metadata">Erreur durant l\'import des données de Calibre</string>
+    <string name="check_for_new_version">Check for New Version</string>
+    <string name="new_version_available">Version %1$s is now Available</string>
+    <string name="page1_Apps">Apps\n(%1$s)</string>
+    <string name="page1_Collections">Collections\n(%1$s)</string>
+    <string name="page1_Books">Livres\n(%1$s)</string>
+    <string name="page1_Periodicals">Periodicals\n(%1$s)</string>
+    <string name="page1_of_3">page 1 sur 3</string>
+    <string name="page1_currently_reading_lbl">Derniers lus</string>
+    <string name="page1_collection_lbl">Intitulé de Collection</string>
+    <string name="page1_nbr_item_format_1">(%1$d à %2$d sur %3$d)</string>
+    <string name="page1_nbr_item_format_2">(%1$d sur %2$d)</string>
+    <string name="page2_applications">Applications</string>
+    <string name="page2_apps_selection_dialog_title">Select Apps</string>
+    <string name="page2_apps_selection_dialog_btn_ok">OK</string>
+    <string name="page2_Google_Books">Google Livres</string>
+    <string name="page2_Public_Library">Public Library</string>
+    <string name="page2_Browser">Navigateur</string>
+    <string name="page2_Purchased_Content">Contenu acheté</string>
+    <string name="page2_All_Notes">Annotations\n(%1$s)</string>
+    <string name="page2_Dictionary">Dictionnaire\n</string>
+    <string name="page2_Handwriting">Notes manuscrites\n(%1$s)</string>
+    <string name="page2_Text_Memo">Memos\n(%1$s)</string>
+    <string name="page2_Pictures">Images\n(%1$s)</string>
+    <string name="page2_Audio">Audio\n(%1$s)</string>
+    <string name="page2_Sony_Settings">Paramètres Sony</string>
+    <string name="page2_Android_Settings">Paramètres Android</string>
+    <string name="page2_text_apps">Applications</string>
+    <string name="page2_of_3">page 2 sur 3</string>
+    <string name="page3_of_3">page 3 sur 3</string>
+    <string name="recent_book_grid_title">%1$s Books (recent)</string>
+    <string name="view_preferences_title">Préférences</string>
+    <string name="pref_number_of_recently_read">Nombre de livres lus</string>
+    <string name="pref_number_of_recently_read_summary">Afficher les [%1$s] derniers livres lus</string>
+    <string name="pref_number_of_recently_added">Number of Recent Added Books</string>
+    <string name="pref_number_of_recently_added_summary">Show [%1$s] books in the "Recently Added" section</string>
+    <string name="pref_collection1_name">Collection 1</string>
+    <string name="pref_collection1_name_summary">Afficher la collection [%1$s] sur la page d\'accueil</string>
+    <string name="pref_collection2_name">Collection 2</string>
+    <string name="pref_collection2_name_summary">Afficher la collection [%1$s] sur la page d\'accueil</string>
+
+    <!-- These collections need a character at the front to make sure that they stand out from the proper collections -->
+    <string name="pref_collection_recently_added">* Recently Added</string>
+    <string name="pref_collection_periodicals">* Periodicals</string>
+    <string name="pref_use_alternate_screen">Use Alternative Screen Layout</string>
+    <string name="pref_use_alternate_screen_yes">Use a Grid of books for homescreen</string>
+    <string name="pref_use_alternate_screen_no">Use Currently Reading and two collections for homescreen</string>
+    <string name="pref_use_filenames">Display Filenames</string>
+    <string name="pref_use_filenames_yes">Display books filenames instead of title/author</string>
+    <string name="pref_use_filenames_no">Display books title/author</string>
+
+    <!-- Periodical grid screen -->
+    <string name="periodical_grid_title">Periodicals (all)</string>
+    <string name="periodical_grid_sorted_title">Sorted by Title</string>
+    <string name="periodical_grid_sorted_number_books">Sorted by Nbr Books</string>
+
+    <!-- Text Notes grid screen -->
+    <string name="text_note_grid_title">Text Notes (all)</string>
+    <string name="text_note_grid_sorted_title">Sorted by Title</string>
+    <string name="text_note_grid_sorted_number_books">Sorted by Nbr Books</string>
+
+    <!-- Book grid screen -->
+    <string name="book_grid_title">%1$s Livres (tous)</string>
+    <string name="book_grid_title_filtered">%1$s Livres (%2$s)</string>
+    <string name="book_grid_title_collection">%1$s Livres (dans %2$s)</string>
+    <string name="book_grid_sorted_title">Triés par Titre</string>
+    <string name="book_grid_sorted_author">Triés par Auteur</string>
+    <string name="book_grid_sorted_added">Triés par Date d\'ajout</string>
+    <string name="book_grid_sorted_filename">Sorted by Filename</string>
+    <string name="book_grid_sorted_last_read">Triés par Date de lecture</string>
+    <string name="book_grid_filter_dialog_title">Choose collections</string>
+    <string name="book_grid_filter_dialog_btn_ok">Okay</string>
+    <string name="book_grid_search_dialog_title">Search For:</string>
+    <string name="book_grid_search_dialog_btn_ok">Okay</string>
+    <string name="book_grid_search_dialog_btn_cancel">Cancel</string>
+    <string name="book_grid_sort_title">Titre</string>
+    <string name="book_grid_sort_author">Auteur</string>
+    <string name="book_grid_sort_collection">Collection</string>
+    <string name="book_grid_sort_filename">Fichier</string>
+
+    <!-- Collection list screen -->
+    <string name="collection_list_title">%1$s Collections (all)</string>
+    <string name="collection_list_title_filtered">%1$s Collections (%2$s)</string>
+    <string name="collection_list_sorted_title">Sorted by Title</string>
+    <string name="collection_list_sorted_nbrBooks">Sorted by Number of Books</string>
+
+    <!-- Book details screen -->
+    <string name="book_details_title">Détails</string>
+    <string name="book_details_series">Séries</string>
+    <string name="book_details_author">Auteur</string>
+    <string name="book_details_publisher">Editeur</string>
+    <string name="book_details_tags">Etiquette</string>
+    <string name="book_details_collections">Collections</string>
+    <string name="book_details_isbn">ISBN</string>
+    <string name="book_details_summary">Résumé</string>
+
+    <!-- Home Menus -->
+    <string name="menu_about">A propos</string>
+    <string name="menu_settings">Préférences globales</string>
+    <string name="menu_preferences">Préférences My Home</string>
+    <string name="menu_clear_default_settings">Paramètres par défaut</string>
+    <string name="menu_select_apps">Select Apps</string>
+    <string name="menu_choose_collection">Choose Collection</string>
+    <string name="menu_clear_filters">Clear Filters</string>
+
+</resources>

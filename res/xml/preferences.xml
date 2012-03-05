@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white" >
+
+    <EditTextPreference
+        style="@style/MyDefaultTextAppearance"
+        android:defaultValue="10"
+        android:key="NumberRecentReadBooks"
+        android:numeric="integer"
+        android:summary="@string/pref_number_of_recently_read_summary"
+        android:title="@string/pref_number_of_recently_read" />
+    <EditTextPreference
+        style="@style/MyDefaultTextAppearance"
+        android:defaultValue="10"
+        android:key="NumberRecentlyAddedBooks"
+        android:numeric="integer"
+        android:summary="@string/pref_number_of_recently_added_summary"
+        android:title="@string/pref_number_of_recently_added" />
+
+    <ListPreference
+        style="@style/MyDefaultTextAppearance"
+        android:dialogTitle="@string/pref_collection1_name"
+        android:key="Collection1Name"
+        android:summary="@string/pref_collection1_name_summary"
+        android:title="@string/pref_collection1_name" />
+    <ListPreference
+        style="@style/MyDefaultTextAppearance"
+        android:dialogTitle="@string/pref_collection2_name"
+        android:key="Collection2Name"
+        android:summary="@string/pref_collection2_name_summary"
+        android:title="@string/pref_collection2_name" />
+
+    <CheckBoxPreference
+        android:enabled="true"
+        android:key="UseFilenames"
+        android:summaryOff="@string/pref_use_filenames_no"
+        android:summaryOn="@string/pref_use_filenames_yes"
+        android:title="@string/pref_use_filenames" />
+
+</PreferenceScreen>

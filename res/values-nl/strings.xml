@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+	<string name="app_name">eBookLauncher</string>
+	<string name="notification_importing_msg">Importeren van Calibre Metadata</string>
+	<string name="error_reading_in_book_metadata">Fout tijdens de import van Calibre Metadata</string>
+	<string name="check_for_new_version">Check voor nieuwere versie</string>
+	<string name="new_version_available">Versie %1$s is nu beschikbaar</string>
+	<string name="page1_Apps">Apps\n(%1$s)</string>
+	<string name="page1_Collections">Collecties\n(%1$s)</string>
+	<string name="page1_Books">Boeken\n(%1$s)</string>
+	<string name="page1_Periodicals">Tijdschriften\n(%1$s)</string>
+	<string name="page1_coverflow">Omslag\nFlow</string>
+	<string name="page1_settings">Instellingen</string>
+	<string name="page1_of_1">pagina 1 van 1</string>
+	<string name="page1_of_3">pagina 1 van 3</string>
+	<string name="page1_currently_reading_lbl">Nu aan het lezen</string>
+	<string name="page1_collection_lbl">Collectie Naam</string>
+	<string name="page1_nbr_item_format_1">(%1$d - %2$d van %3$d)</string>
+	<string name="page1_nbr_item_format_2">(%1$d van %2$d)</string>
+	<string name="page2_applications">Applicaties</string>
+	<string name="page2_apps_selection_dialog_title">Selecteer Aplicatie</string>
+	<string name="page2_apps_selection_dialog_btn_ok">OK</string>
+	<string name="page2_Google_Books">Google Boeken</string>
+	<string name="page2_Public_Library">Openbare bibliotheek</string>
+	<string name="page2_Browser">Browser</string>
+	<string name="page2_Purchased_Content">Gekochte boeken</string>
+	<string name="page2_All_Notes">Alle aantekeningen\n(%1$s)</string>
+	<string name="page2_Dictionary">Woordenboek\n</string>
+	<string name="page2_Handwriting">Handschrift\n(%1$s)</string>
+	<string name="page2_Text_Memo">Text Memo\n(%1$s)</string>
+	<string name="page2_Pictures">Foto\'s\n(%1$s)</string>
+	<string name="page2_Audio">Audio\n(%1$s)</string>
+	<string name="page2_Sony_Settings">Sony instellingen</string>
+	<string name="page2_Android_Settings">Android instellingen</string>
+	<string name="page2_text_apps">Applicaties</string>
+	<string name="page2_of_3">pagina 2 van 3</string>
+	<string name="page3_of_3">pagina 3 van 3</string>
+	<string name="app_grid_title">Aplicaties</string>
+	<string name="recent_book_grid_title">%1$s Boeken (recent)</string>
+	<string name="view_preferences_title">Voorkeuren</string>
+	<string name="pref_number_of_recently_read">Aantal onlangs gelezen boeken</string>
+	<string name="pref_number_of_recently_read_summary">Laat [%1$s] boeken zien in "Nu aan het lezen"</string>
+	<string name="pref_number_of_recently_added">Aantal van onlangs toegevoegde boeken</string>
+	<string name="pref_number_of_recently_added_summary">Laat [%1$s] boeken zien in "Onlangs toegevoegd"</string>
+	<string name="pref_collection1_name">Collectie 1</string>
+	<string name="pref_collection1_name_summary">Laat collectie [%1$s] zien in het home screen</string>
+	<string name="pref_collection2_name">Collectie 2</string>
+	<string name="pref_collection2_name_summary">Laat collectie [%1$s] zien in het home screen</string>
+
+	<!-- These collections need a character at the front to make sure that they stand out from the proper collections -->
+	<string name="pref_collection_recently_added">* Onlangs toegevoegd</string>
+	<string name="pref_collection_periodicals">* Tijdschriften</string>
+	<string name="pref_use_alternate_screen">Gebruik alternatief scherm layout</string>
+	<string name="pref_use_alternate_screen_yes">Gebruik een raster voor het home screen</string>
+	<string name="pref_use_alternate_screen_no">Gebruik nu aan het lezen en twee collecties voor het home screeen</string>
+	<string name="pref_use_filenames">Laat bestandsnamen zien</string>
+	<string name="pref_use_filenames_yes">Laat boekennamen zien i.p.v. titel/auteur</string>
+	<string name="pref_use_filenames_no">Laat boeken op titel/auteur zien</string>
+
+	<!-- Periodical grid screen -->
+	<string name="periodical_grid_title">Tijdschriften (alles)</string>
+	<string name="periodical_grid_sorted_title">Gesorteerd op titel</string>
+	<string name="periodical_grid_sorted_number_books">Gesorteerd op nummer van het boek</string>
+
+	<!-- Text Notes grid screen -->
+	<string name="text_note_grid_title">Text Notities (alles)</string>
+	<string name="text_note_grid_sorted_title">Gesorteerd op titel</string>
+	<string name="text_note_grid_sorted_number_books">Gesorteerd op nummer van het boek</string>
+
+	<!-- Text note editor screen -->
+	<string name="text_note_editor_title">Bewerk</string>
+	<string name="text_note_editor_save">Opslaan</string>
+	<string name="text_note_editor_new">Nieuw</string>
+
+	<!-- Book grid screen -->
+	<string name="book_grid_title">%1$s Boeken (alles)</string>
+	<string name="book_grid_title_filtered">%1$s Boeken (%2$s)</string>
+	<string name="book_grid_title_collection">%1$s Boeken (in %2$s)</string>
+	<string name="book_grid_sorted_title">Gesorteerd op titel</string>
+	<string name="book_grid_sorted_author">Gesorteerd op auteur</string>
+	<string name="book_grid_sorted_added">Gesorteerd op datum van toevoegingd</string>
+	<string name="book_grid_sorted_filename">Gesorteerd op bestandsnaam</string>
+	<string name="book_grid_sorted_last_read">Gesorteerd op datum van lezen</string>
+	<string name="book_grid_filter_dialog_title">Kies collectie</string>
+	<string name="book_grid_filter_dialog_btn_ok">Oké</string>
+	<string name="book_grid_search_dialog_title">Zoek naar:</string>
+	<string name="book_grid_search_dialog_btn_ok">Oké</string>
+	<string name="book_grid_search_dialog_btn_cancel">Annuleer</string>
+	<string name="book_grid_sort_title">Titel</string>
+	<string name="book_grid_sort_author">Auteur</string>
+	<string name="book_grid_sort_collection">Collectie</string>
+	<string name="book_grid_sort_filename">Bestandsnaam</string>
+
+	<!-- Book grid context menu items -->
+	<string name="book_grid_context_item_view_book_details">Laat details van het boek zien</string>
+	<string name="book_grid_context_item_open_book">Open Boek</string>
+	<string name="book_grid_context_item_delete_book">Verwijder Book</string>
+
+	<!-- Collection list screen -->
+	<string name="collection_list_title">%1$s Collecties (alles)</string>
+	<string name="collection_list_title_filtered">%1$s Collecties (%2$s)</string>
+	<string name="collection_list_sorted_title">Gesorteerd op titel</string>
+	<string name="collection_list_sorted_nbrBooks">Gesorteerd op nummer van de boeken</string>
+
+	<!-- Book details screen -->
+	<string name="book_details_title">Details</string>
+	<string name="book_details_series">Series</string>
+	<string name="book_details_author">Auteur</string>
+	<string name="book_details_publisher">Uitgever</string>
+	<string name="book_details_tags">Labels</string>
+	<string name="book_details_collections">Collecties</string>
+	<string name="book_details_isbn">ISBN</string>
+	<string name="book_details_summary">Overzicht</string>
+	<string name="book_details_filename">Bestandsnaam</string>
+
+	<!-- Home Menus -->
+	<string name="menu_about">Over</string>
+	<string name="menu_settings">Apparaat instellingen</string>
+	<string name="menu_preferences">Mijn Home instellingen</string>
+	<string name="menu_clear_default_settings">Fabrieksinstellingen applicaties</string>
+	<string name="menu_select_apps">Selecteer Applicaties</string>
+	<string name="menu_choose_collection">Kies Collectie</string>
+	<string name="menu_clear_filters">Reset Filters</string>
+	<string name="menu_send_log">Verstuur lang log bestand</string>
+
+	<!-- *************************** About information *************************** -->
+	<string name="about_version">version</string>
+	<string name="about_author">Andy Aspell-Clark</string>
+	<string name="about_summary">tA replacement Homescreen\n\tFor Nook Simple Touch &amp; Sony PRS-T1</string>
+	<string name="about_copyright">Copyright© 2011/2012\nAndy Aspell-clark</string>
+	<string name="about_website_label">eBookLauncher Home</string>
+	<string name="about_website_url">http://code.google.com/p/sonyprst1home/</string>
+	<string name="about_website_userguide_url">http://andy.aspellclark.org.uk/</string>
+	<string name="about_email">andyaspellclark@gmail.com</string>
+
+</resources>
